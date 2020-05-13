@@ -24,6 +24,9 @@
 	<!-- 기본 으로 설정 되는 페키지 -->
 	<context:component-scan base-package="com.spring.test.controller" />
 	
+	<!-- multipartResolver등록 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 	
 	
 </beans:beans>

@@ -14,7 +14,7 @@ public class Criteria {
 	
 	private String type;
 	private String keyword;
-
+	
 	/*용도가 pagenum과 amount값을 전달하는 용도이지만 생성자를 통해서 기본값을 1/10개로 지정해서 처리합니다*/
 	/*최초 게시판 진입할 때를 위해서 기본 값 설정 */
 	
@@ -30,7 +30,7 @@ public class Criteria {
 	}
 	public int getPageStart() {
         return (this.pageNum-1)*amount;
-    }
+    }// 현재 페이지의 게시글 시작 번호 = 현재 페이지 번호 -1 * 페이지당 보여주는 갯수
 	
 	public String[] getTypeArr() {
 		

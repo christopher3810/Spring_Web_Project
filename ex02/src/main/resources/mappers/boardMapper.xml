@@ -40,6 +40,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from board where id = #{id}<!-- 오라클과 다른점은 mysql은 from 테이블명 오라클은 
 			from 안써두댐 -->
 	</delete>
+	
+	<update id="updateReplyCnt">
+		update board set replycnt = replycnt + #{amount} where id = #{id}
+	</update>
 
 	<update id="update">
 		update board
@@ -63,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListWithPaging"
 		resultType="com.spring.test.domain.BoardVO">
 	<![CDATA[
-		select id, title, content, attachments, price , likes, views, create_time
+		select id, title, content, attachments, price , likes, views, create_time , replycnt
 		from board
 		where id > 0
 		]]>

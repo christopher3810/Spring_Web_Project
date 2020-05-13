@@ -174,7 +174,7 @@
 									<fmt:formatDate value="${board.create_time }"
 										pattern="yyyy-MM-dd" />
 								</div>
-								<div class="p-desc" align="right">좋아요 : ${board.likes}</div>
+								<div class="p-desc" align="right">좋아요 : ${board.likes} & 댓글 <b>[<c:out value="${board.replyCnt}" />]</b></div>
 								<button class="p-add" align="right">Add to Cart</button>
 							</div>
 						</div>
@@ -253,11 +253,11 @@
 		
 	#search-option::-ms-expand {display:none}
 	</style>
-
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-
+					
+					console.log(replyService);
 					var actionForm = $("#actionForm");
 
 					$(".paginate_button a").on(
