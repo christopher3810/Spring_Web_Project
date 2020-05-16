@@ -28,6 +28,7 @@ public class Criteria {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
+	
 	public int getPageStart() {
         return (this.pageNum-1)*amount;
     }// 현재 페이지의 게시글 시작 번호 = 현재 페이지 번호 -1 * 페이지당 보여주는 갯수
