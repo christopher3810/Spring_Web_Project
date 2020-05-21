@@ -1,6 +1,8 @@
 package com.spring.test.domain;
 
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -26,5 +28,5 @@ public class BoardVO {
 	
 	private int replyCnt;
 	
-
+	private List<BoardAttachVO> attachList; //등록시 한번에 BoardAttachVO처리 할수 있도록 List로 추가 
 }
