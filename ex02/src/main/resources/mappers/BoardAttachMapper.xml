@@ -12,7 +12,7 @@
 	
 	<delete id="delete">
 	
-	delete from attach where uuid =#{uuid}
+	delete from attach where uuid = #{uuid}
 	
 	</delete>
 	

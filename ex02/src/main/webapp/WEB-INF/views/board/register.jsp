@@ -140,7 +140,7 @@
 	<div id="example">
 		<div id="add-product" class="demo-section k-content">
 			<p class="title">새로운 상품 등록</p>
-			<form id="ticketsForm">
+			<form id="ticketsForm" role='form' action="/board/register" method="post">
 				<ul id="fieldlist">
 					<li><label for="fullname" class="required">상품명</label> <input
 						type="text" id="fullname" name="fullname" class="k-textbox"
@@ -327,7 +327,23 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				e.preventDefault();
 
 				console.log("file upload submit clicked");
-
+				
+				var str = "";
+				
+				$(".uploadResult ul li").each(function(i,obj){
+					
+					var jobj = $(obj);
+					
+					console.dir(jobj);
+					
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileNamevalue='"+jobj.data("filename")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uuidvalue='"+jobj.data("uuid")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uploadPathvalue='"+jobj.data("path")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileTypevalue='"+jobj.data("type")+"'>";
+					
+				});
+				formObj.append(str).submit();
+				
 			});//submit on clikc
 			//파일 업로드는 별도의 버튼이아닌 input type=file 의 내용이 변경되는것을 감지해야함 
 			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
@@ -394,10 +410,12 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						
 						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
 						
-						str += "<li><div col-md-4 center-block>";
-						str += "<span> "+ obj.fileName;
-						str += "<button type='button' class='close' aria-label='Close'>"+
-						"<span aria-hidden='true'>&times;</span></button></span><br>";
+						str += "<li data-path ='"+obj.uploadPath+"'";
+						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
+						str += "<div col-md-4 center-block>";
+						str += "<span> "+ obj.fileName + "</span>";
+						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+						"<span aria-hidden='true'>&times;</span></button><br>";
 						str += "<img src='/display?fileName="+fileCallPath+"'>";
 						str += "</div>";
 						str + "</li>";
@@ -411,25 +429,46 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						//originPath = originPath.replace(new RegExp(/\\/g),"/");
 						//생성된 문자열은 '\' 기호 때문에 일반 문자열과 다르게 됨으로 replace RegExp를 활용 /로 변환해서 해줘야 올바른 이미지 경로가된다 !!!
 						
-						str += "<li><div>";
+						str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
+						str += "data-type ='"+obj.image+"' ><div>";
 						str += "<span> "+ obj.fileName+"</span>";
-						str += "<button type='button' class='btn btn-warning btn-circle'>"+
-						"<i class='fa fa-times'></i></button><br>";
+						str += "<button type='button' cclass='close' aria-label='Close' data-file=\'"+fileCallPath+"\' data-type='file'>"+
+						"<span aria-hidden='true'>&times;</span></button><br>";
 						str += "<img src='/resources/images/attach.png'>";
 						str += "</div>";
 						str + "</li>";
-					}//else
+					}; //else
 					
-				});//uploadResultArr
+				}); //uploadResultArr
 				uploadUL.append(str);		
-			};//show upload result
+			}; //show upload result
 			
 			$(".uploadResult").on("click", "button", function(e){
 				
 				console.log("delete file");
 				
-			})
-
+				var targetFile = $(this).data("file");
+				console.log(targetFile);
+				var type = $(this).data("type");
+				
+				var targetLi = $(this).closest("li");
+				
+				$.ajax({
+					url : '/deleteFile',
+					data : {fileName : targetFile, type : type},
+					dataType : 'text',
+					type : 'Post',
+					success : function(result){
+						alert(result);
+						targetLi.remove();
+					}//success
+					
+				});//ajax
+				
+			});//uploadResultOnClick
+			
+			
+			
 			// create NumericTextBox from input HTML element
 			$("#numeric").kendoNumericTextBox();
 
