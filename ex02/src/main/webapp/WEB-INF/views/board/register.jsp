@@ -143,14 +143,14 @@
 			<form id="ticketsForm" role='form' action="/board/register" method="post">
 				<ul id="fieldlist">
 					<li><label for="fullname" class="required">상품명</label> <input
-						type="text" id="fullname" name="fullname" class="k-textbox"
+						type="text" id="title" name="title" class="k-textbox"
 						placeholder="상품명" required validationMessage="Enter {0}"
 						style="width: 50%; height: 30px;" /></li>
-					<li><label>상품가격:</label> <input id="currency" type="number"
+					<li><label>상품가격:</label> <input id="price" name='price' type="number"
 						title="currency" value="10000" min="0" max="10000000"
 						style="width: 50%; height: 30px;" /></li>
 					<li><label for="tel" class="required">상품상세정보</label> <input
-						type="tel" id="tel" name="tel" class="k-textbox" pattern="\d{10}"
+						type="tel" id="tel" name="content" class="k-textbox" pattern="\d{10}"
 						placeholder="Enter a ten digit number" required
 						validationMessage="Enter at least ten digits"
 						style="width: 50%; height: 30px;" /></li>
@@ -159,45 +159,28 @@
 						<h2>상품 사이즈 입력</h2>
 					</li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 220</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 220</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size220'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 230</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 230</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size230'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 240</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 240</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size240'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 250</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 250</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size250'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 260</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 260</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size260'></li>
 
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 270</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 270</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size270'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 280</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 280</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size280'></li>
 					<li id="size"><label for="tel" class="required"
-						style="width: 100%;"> 290</label> <input id="numeric"
-						type="number" title="numeric" value="17" min="0" max="100"
-						step="1" style="width: 60%;" /></li>
+						style="width: 100%;"> 290</label>  <input class="form-control" type="number" value="42" id="example-number-input" name ='size290'></li>
 
 					<li class="confirm" style="width: 100%;">
 						<button class="k-button k-primary" type="submit">Submit</button>
 						<button class="k-button k-primary" type="reset">Reset</button>
 					</li>
 					<li class="status"></li>
-			</form>
 					<div class="card" style="width: 100%;">
 
 						<div class="card-header">상품 설명 파일 이미지 업로드</div><!-- card header -->
@@ -219,6 +202,7 @@
 
 					</div>
 					<!-- end card -->
+			</form>
 		</div>
 	</div>
 	<!-- example -->
@@ -336,10 +320,10 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 					
 					console.dir(jobj);
 					
-					str += "<input type = 'hidden' name ='attachList["+i+"].fileNamevalue='"+jobj.data("filename")+"'>";
-					str += "<input type = 'hidden' name ='attachList["+i+"].uuidvalue='"+jobj.data("uuid")+"'>";
-					str += "<input type = 'hidden' name ='attachList["+i+"].uploadPathvalue='"+jobj.data("path")+"'>";
-					str += "<input type = 'hidden' name ='attachList["+i+"].fileTypevalue='"+jobj.data("type")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
 					
 				});
 				formObj.append(str).submit();

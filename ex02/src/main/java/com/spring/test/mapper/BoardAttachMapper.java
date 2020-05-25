@@ -10,6 +10,6 @@ public interface BoardAttachMapper {
 	
 	public void delete(String uuid);
 	//원본파일
-	public List<BoardAttachVO> findByBno(int bno);
+	public List<BoardAttachVO> findByBno(Long id);
 	
 }

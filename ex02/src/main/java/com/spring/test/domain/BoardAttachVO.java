@@ -10,6 +10,6 @@ public class BoardAttachVO {
 	private String fileName;
 	private boolean fileType; //이미지 파일 여부를 판단 
 	
-	private int bno;
+	private long bno;
 	
 }

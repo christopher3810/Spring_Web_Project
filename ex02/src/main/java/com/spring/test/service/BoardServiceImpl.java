@@ -2,12 +2,18 @@ package com.spring.test.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.spring.test.domain.BoardAttachVO;
 import com.spring.test.domain.BoardVO;
 import com.spring.test.domain.Criteria;
+import com.spring.test.mapper.BoardAttachMapper;
 import com.spring.test.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -15,14 +21,29 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 	
+	@Setter(onMethod_= @Autowired)
 	private BoardMapper mapper;
 	
+	@Setter(onMethod_= @Autowired)
+	private BoardAttachMapper attachMapper;
+	
+	@Transactional
 	@Override
 	public void register(BoardVO board) {
 		// TODO Auto-generated method stub
 		log.info("register......" + board);
 		
 		mapper.insertSelectKey(board);
+		
+		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		board.getAttachList().forEach(attach ->{
+			
+			attach.setBno(board.getId());
+			attachMapper.insert(attach);
+		});
 	}
  
 	/*조회 작업 구현과 테스트 조회 는 게시물의 번호가 파라미터 BoardVO의 인스턴스가 리턴이 됨*/
@@ -63,6 +84,14 @@ public class BoardServiceImpl implements BoardService {
 		log.info("get total count");
 		
 		return mapper.getTotalCount(cri);
+	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList(Long bno) {
+		// TODO Auto-generated method stub
+		
+		log.info("get Attach list by id" + bno);
+		return attachMapper.findByBno(bno);
 	}
 	
 

@@ -8,6 +8,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/boardproduct.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/styles/kendo.common.min.css" />
 <link rel="stylesheet" href="/resources/styles/kendo.default.min.css" />
@@ -208,10 +210,28 @@
 					<h3 style="margin-top:19px">배송/교환/반품/AS안내</h3>
 				</li>
 			</ul>
-			<div>
-				<h1>상품정보 들어갈 공간</h1>
-			</div>
-			<div>
+			<div><!-- 상품 설명 첨부파일 보여주는 공간 -->
+				<div class = 'ProductPictureWrapper'>
+					<div class = 'ProductPicture'>
+					</div>
+				</div>
+				
+				<div class="row" style="width : 96%;">
+					<div class="col-lg-12">
+						<div class="card" style="width: 100%;">
+							<div class="card-header"><p style="float:right";>첨부파일</p><br/><div id="fileuploadhead"></div></div><!-- card header -->
+								<div class="card-body">
+									<div class='uploadResult'>
+										<ul>
+										</ul>		
+									</div><!-- uploadResultend -->
+								</div><!--cardbodyend  -->
+						</div><!--card end  -->
+					</div><!--col-lg-12end  -->
+				</div><!--rowend  -->
+			</div><!--div end  -->
+			
+		<div><!--startreplysection -->
 			<div class="reply-header" style="border-bottom: 2px solid black; height:60px; padding-top:50px; text-align:right; ">
 					<h4 style ="float:left;">댓글 목록 </h4>
 					<button id ="addReplyBtn" type="button" class="btn btn-dark" style="display:inline-block">댓글 작성하기</button>
@@ -423,6 +443,7 @@
 	width: 10%;
 	display: inline;
 }
+
 </style>
 	<script type="text/javascript" src="/resources/js/reply.js"></script>
 	<script>	
@@ -484,6 +505,48 @@
 	<script>
 	
 	$(document).ready(function(){
+		
+		(function(){
+			var bno = ${board.id};
+			
+			$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+				
+				console.log(arr);
+				
+				var str ="";
+				
+				$(arr).each(function(i, attach){
+					
+					//img 
+					if(attach.fileType){
+						var fileCallPath = encodeURIComponent (attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName);
+						
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
+						"data-type='"+attach.fileType+"'><div>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str += "</li>";
+						$(".uploadResult ul").html(str);
+					}
+				});
+				$(arr).each(function(i, attach){
+					if(!attach.fileType){
+						str = "";
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
+						"data-type='"+attach.fileType+"' ><div>";
+						str += "<img src='/resources/images/attach.png'>";
+						str += "<span>" + attach.fileName+"</span>";
+						str += "</div>";
+						str += "</li>";
+						$("#fileuploadhead").html(str);
+					}//else end
+				});//arr.each end
+			//원위치
+			});//getjson end
+		})();//function end
+		
+		
+		
 	
 		var bnoValue = ${board.id};
 		var replyUL = $("#replychat");
@@ -691,9 +754,7 @@
 	</script>
 	
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							var sizeprice = $("#productprice").text();
 							$("#size").kendoDropDownList();
 							$("#tabstrip").kendoTabStrip({
@@ -704,9 +765,7 @@
 								}
 							});
 
-							$("#size")
-									.change(
-											function() {
+							$("#size").change(function() {
 												var temp = sizedata;
 												var sizedata = $(
 														"#size option:selected")

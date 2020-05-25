@@ -11,11 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insert">
 		insert into board
-		(id,title,content,attachments,price,likes,views,create_time)
+		(id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
 		values
 		((select *from (select max(id)+1 from board) next), <!--nextval오라클 시퀀스여서 
 			mysql식으로 autoincrease sql작업해줘야됨 -->
-		#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time})
+		#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time},#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
 
