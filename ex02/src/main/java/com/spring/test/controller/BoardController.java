@@ -1,5 +1,8 @@
 package com.spring.test.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -108,10 +111,10 @@ public class BoardController {
 
 	}
 
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("id") Long id, Model model) {
 
-		log.info("/get");
+		log.info("/get or modify");
 		model.addAttribute("board", service.get(id));
 
 	}
@@ -127,12 +130,19 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("id") Long id, RedirectAttributes rttr) {
+	public String remove(@RequestParam("id") Long id, Criteria cri, RedirectAttributes rttr) {
 		log.info("remove...." + id);
+		
+		List<BoardAttachVO> attachList = service.getAttachList(id);
+		
 		if (service.remove(id)) {
+			
+			//Attach Files 삭제
+			deleteFiles(attachList);
+			log.info("attachList" + attachList);
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 	}
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -144,5 +154,35 @@ public class BoardController {
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	}
 	//BoardController는 restcontroller로 작성되지 않았기 때문에 직접 @responseBody 적용해서 json데이터 변환해야됨 
-
+	
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info("delete attach files.............................");
+		log.info(attachList);
+		
+		attachList.forEach(attach ->{
+			try {
+				Path file = Paths.get("D:\\web_upload\\"+attach.
+						getUploadPath()+"\\" +attach.getUuid()+"_"+ attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					
+					Path thumbNail = Paths.get("D:\\web_upload\\"+attach.
+							getUploadPath()+"\\s_" + attach.getUuid()+"_"+attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}
+			}catch(Exception e){
+				
+				log.error("delete file error" + e.getMessage());
+			}//end try catchx 
+			
+		});
+	}
 }

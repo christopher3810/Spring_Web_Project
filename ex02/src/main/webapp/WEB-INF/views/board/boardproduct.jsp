@@ -193,6 +193,7 @@
 			<button type="button" class="btn btn-dark"
 				style="width: 46%; height: 50px">바로구매</button>
 		</div>
+		
 		<!-- 상단 상품 정보 -->
 		<div id="tabstrip" style="padding: 4%; margin-top: 9%;">
 			<ul>
@@ -242,10 +243,10 @@
 					<li class = "list-group-item" data-rno='12'>
 						<div>
 							<div class="header_reply">
-								<strong class="primary-font">user00</strong>
-								<small class="pull-right text-muted">2018-01-01 13:13</small>
+								<strong class="primary-font">운영자</strong>
+								<small class="pull-right text-muted">0000-00-00 00:00</small>
 								</div>
-								<p> good job!</p>
+								<p> 댓글을 등록하여 회원님의 생각을 표연하세요!!</p>
 						</div>
 					</li>
 				</ul>
@@ -263,6 +264,14 @@
 				<h1>상품 반품및 정보 들어갈 공간</h1>
 			</div>
 		</div>
+		<div style= "text-align:center;">
+				<button data-oper='modify' class="btn btn-default">Modify</button>
+				<button data-oper='list' class="btn btn-info">List</button>
+				
+		</div>
+		<form id='operForm' action="/board/modify" method="get">
+			<input type ='hidden' id='bno' name='id' value="${board.id}">
+		</form>
 	</div>
 	</div>
 	
@@ -505,8 +514,8 @@
 	<script>
 	
 	$(document).ready(function(){
-		
-		(function(){
+		//$(function(){}); $(document).ready(function(){ }); 와 $(function(){ }); 동일한 의미 간편하게 후자와 같이 많이 사용을 합니다. 
+		$(function(){
 			var bno = ${board.id};
 			
 			$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
@@ -529,23 +538,33 @@
 						$(".uploadResult ul").html(str);
 					}
 				});
+				var str ="";
 				$(arr).each(function(i, attach){
 					if(!attach.fileType){
-						str = "";
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
-						"data-type='"+attach.fileType+"' ><div>";
+						"data-type='"+attach.fileType+"' ><a><div>";
 						str += "<img src='/resources/images/attach.png'>";
 						str += "<span>" + attach.fileName+"</span>";
 						str += "</div>";
-						str += "</li>";
+						str += "</a></li>";
 						$("#fileuploadhead").html(str);
 					}//else end
 				});//arr.each end
 			//원위치
 			});//getjson end
-		})();//function end
+		});//function end
 		
-		
+		$("#fileuploadhead").on("click", "li", function(e){
+			
+			console.log("click uploadfile");
+			
+			var liObj = $(this);
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			
+			self.location = "/download?fileName="+path;
+			
+		});
 		
 	
 		var bnoValue = ${board.id};
@@ -748,6 +767,22 @@
 				showList(pageNum);
 				
 			})
+			
+			var operForm = $("#operForm");
+			
+
+			$("button[data-oper='modify']").on("click", function(e){
+				
+				operForm.attr("action","/board/modify").submit();
+				
+			});
+			
+			$("button[data-oper='list']").on("click", function(e){
+				
+				operForm.find("#bno").remove();
+				operForm.attr("action","/board/list")
+				operForm.submit();
+			});
 			
 			
 	});

@@ -63,10 +63,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	/*삭제 나 수정은 메서드의 리턴타입을 void로 설계할 수도 있지만 엄격하게 처리하기 위해 Boolean타입으로 처리*/
+	@Transactional
 	@Override
 	public boolean remove(Long id) {
 		
 		log.info("remove....." + id);
+		
+		attachMapper.deleteAll(id);
 		
 		return mapper.delete(id) == 1;
 	}

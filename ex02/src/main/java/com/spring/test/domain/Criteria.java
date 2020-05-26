@@ -1,5 +1,7 @@
 package com.spring.test.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,7 +39,21 @@ public class Criteria {
 		
 		return type == null? new String[] {}: type.split("");
 	}
-
+	
+	//게시물의 삭제후 페이지 번호나 검색 조건 유지하면서 이동하기 위해 redirect에 필요한 파라미터 매번 추가해야되는 불편
+	//criteria에서 처리
+	//UriComponentsBuilder는 브라우저에서 GET방식등의 파라미터 전송에 사용되는 문자열QUERYstring을 손쉽게 처리할 수 있는 클래스 
+	public String getListLink() {
+		
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+				.queryParam("PageNum", this.pageNum)
+				.queryParam("amout", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyword", this.getKeyword());
+				
+		return builder.toUriString();
+		
+	}
 	
 /*	
 	 public int getPageStart() {

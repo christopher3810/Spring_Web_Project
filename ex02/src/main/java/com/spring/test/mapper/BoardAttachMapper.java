@@ -12,4 +12,6 @@ public interface BoardAttachMapper {
 	//원본파일
 	public List<BoardAttachVO> findByBno(Long id);
 	
+	public void deleteAll(Long id);
+	
 }

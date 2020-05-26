@@ -54,7 +54,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		price = #{price},
 		likes = #{likes},
 		views = #{views},
-		create_time = now() <!-- -->
+		create_time = now(), <!-- -->
+		size220 = #{size220},
+		size230 = #{size230},
+		size240 = #{size240},
+		size250 = #{size250},
+		size260 = #{size260},
+		size270 = #{size270},
+		size280 = #{size280},
+		size290 = #{size290}
 		where id = #{id}
 	</update>
 	<!-- ROW_NUMBER() OVER ( [ PARTITION BY partition_expression ] [ ORDER BY 

@@ -31,6 +31,7 @@
 #fileuploadhead li{
 	list-style : none;
 	float : right;
+	cursor: pointer;
 }
 .uploadResult ul li span{
 	color:white;
