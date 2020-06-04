@@ -9,7 +9,7 @@ public class PageDTO {
 		private int startPage;
 		private int endPage;
 		private boolean prev, next;
-		private int total; //ÀüÃ¼ µ¥ÀÌÅÍ¼ö
+		private int total; //ì „ì²´ ë°ì´í„°ìˆ˜
 		private int displayPageNum = 10;
 		private Criteria cri;
 		
@@ -82,23 +82,23 @@ public class PageDTO {
 			this.cri = cri;
 			this.total = total;
 			
-			//³¡ ÆäÀÌÁö ¹øÈ£ = ³¡ÆäÀÌÁö ¹øÈ£ -> ÇöÁ¦ÆäÀÌÁö ¹øÈ£¸¦ 10´ÜÀ§·Î ³ª´²¼­ 10 20 30 40 À¸·Î Ç¥±â  ¿¹¸¦µé¾î 5¸é 0.5ÀÎµ¥ ¿Ã·Á¼­ 1 1~10ÀÌ¸é 10
-			//13/14ÀÎ°æ¿ì 1.3 / 1.4ÀÌ´Ï±î ¹«Á¶°Ç 20 ÀÌµÊ
-			this.endPage = (int) (Math.ceil(cri.getPageNum()/10.0))*10; //Math.ceil¼Ò¼öÁ¡ ÀÌÇÏ ¿Ã¸² °Á¿Ã¸² ¹İ¿Ã¸² x
-			this.startPage = this.endPage - 9; //10°³¾¿ º¸¿©ÁÖ´Ï±î -9
+			//ë í˜ì´ì§€ ë²ˆí˜¸ = ëí˜ì´ì§€ ë²ˆí˜¸ -> í˜„ì œí˜ì´ì§€ ë²ˆí˜¸ë¥¼ 10ë‹¨ìœ„ë¡œ ë‚˜ëˆ ì„œ 10 20 30 40 ìœ¼ë¡œ í‘œê¸°  ì˜ˆë¥¼ë“¤ì–´ 5ë©´ 0.5ì¸ë° ì˜¬ë ¤ì„œ 1 1~10ì´ë©´ 10
+			//13/14ì¸ê²½ìš° 1.3 / 1.4ì´ë‹ˆê¹Œ ë¬´ì¡°ê±´ 20 ì´ë¨
+			this.endPage = (int) (Math.ceil(cri.getPageNum()/10.0))*10; //Math.ceilì†Œìˆ˜ì  ì´í•˜ ì˜¬ë¦¼ ê±ì˜¬ë¦¼ ë°˜ì˜¬ë¦¼ x
+			this.startPage = this.endPage - 9; //10ê°œì”© ë³´ì—¬ì£¼ë‹ˆê¹Œ -9
 			
 			
-			//ÃÑ°¹¼ö / ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ ¾ç
+			//ì´ê°¯ìˆ˜ / í•œí˜ì´ì§€ì— ë³´ì—¬ì¤„ ì–‘
 			int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
 			
 			if(realEnd < this.endPage) {
-				//³¡¿¡ µµ´ŞÇÒ‹š endPage¸¦ ¹Ù²ãÁÜ
+				//ëì— ë„ë‹¬í• ë–„ endPageë¥¼ ë°”ê¿”ì¤Œ
 				this.endPage = realEnd;
 			}
 			
-			//ÀÌÀü¹öÆ°Àº 1ÀÌ¾Æ´Ï¸é »ı±è
-			this.prev = this.startPage > 1;//prev = startPage == 1 ? false : true;
-			//´ÙÀ½¹öÆ°Àº ÁøÂ¥ ³¡ÁöÁ¡º¸´Ù ÀûÀº°æ¿ì »ı±è
+			//ì´ì „ë²„íŠ¼ì€ 1ì´ì•„ë‹ˆë©´ ìƒê¹€
+			this.prev = this.startPage > 1;prev = startPage == 1 ? false : true;
+			//ë‹¤ìŒë²„íŠ¼ì€ ì§„ì§œ ëì§€ì ë³´ë‹¤ ì ì€ê²½ìš° ìƒê¹€
 			this.next = this.endPage < realEnd ; //next = endPage < realEnd ? false : true;;
 		}
 

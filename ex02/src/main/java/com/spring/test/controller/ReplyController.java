@@ -27,9 +27,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class ReplyController {
-	//PK·Î±âÁØÀ¸·Î ÀÛ¼ºÇØ¾ß µÊ ´ñ±Û ¸ñ·Ï¸¸ °Ô½Ã¹°°ú ÆäÀÌÁö¹øÈ£ ÀÌ¿ë
-	//µî·Ï : POST Á¶È¸ : GET »èÁ¦ : DELETE ¼öÁ¤ : PUTorPATCH ÆäÀÌÁö : GET
-	//* Talend API Tester È®ÀÎ½Ã body¿¡ °ªÀü´ŞÇÏ°í³ª¼­ url ¼­¹öµ¹¸°µÚ º¹ºÙÇØ¼­ Å×½ºÆ®ÇÏ´Â°Ô ÁÁÀ½ Á¶±İÀÌ¶óµµ ´Ù¸¦½Ã ¿¡·¯¹ß»ı
+	//PKë¡œê¸°ì¤€ìœ¼ë¡œ ì‘ì„±í•´ì•¼ ë¨ ëŒ“ê¸€ ëª©ë¡ë§Œ ê²Œì‹œë¬¼ê³¼ í˜ì´ì§€ë²ˆí˜¸ ì´ìš©
+	//ë“±ë¡ : POST ì¡°íšŒ : GET ì‚­ì œ : DELETE ìˆ˜ì • : PUTorPATCH í˜ì´ì§€ : GET
+	//* Talend API Tester í™•ì¸ì‹œ bodyì— ê°’ì „ë‹¬í•˜ê³ ë‚˜ì„œ url ì„œë²„ëŒë¦°ë’¤ ë³µë¶™í•´ì„œ í…ŒìŠ¤íŠ¸í•˜ëŠ”ê²Œ ì¢‹ìŒ ì¡°ê¸ˆì´ë¼ë„ ë‹¤ë¥¼ì‹œ ì—ëŸ¬ë°œìƒ
 	private ReplyService service;
 	
 	@PostMapping(value = "/new",			
@@ -45,7 +45,7 @@ public class ReplyController {
 		
 		log.info("Reply INSERT COUNT: " + insertCount);
 		
-		//3Ç× ¿¬»êÀÚ·Î ´ñ±Û Ãß°¡µÈ ¼ıÀÚ È®ÀÎ ÈÄ Ã³¸®`
+		//3í•­ ì—°ì‚°ìë¡œ ëŒ“ê¸€ ì¶”ê°€ëœ ìˆ«ì í™•ì¸ í›„ ì²˜ë¦¬`
 		return insertCount == 1 
 				? new ResponseEntity<>("success" , HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -58,8 +58,8 @@ public class ReplyController {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<ReplyPageDTO> getList(
-			//Criteria »ı¼ºÇØ¼­ Á÷Á¢ Ã³¸®ÇØ¾ßÇÔ  PathVariableÀÌ¿ëÇØ¼­ ÆÄ¶ó¹ÌÅÍ·Î Ã³¸® 
-			//ReplyDTO·Î °ªÀü´Ş
+			//Criteria ìƒì„±í•´ì„œ ì§ì ‘ ì²˜ë¦¬í•´ì•¼í•¨  PathVariableì´ìš©í•´ì„œ íŒŒë¼ë¯¸í„°ë¡œ ì²˜ë¦¬ 
+			//ReplyDTOë¡œ ê°’ì „ë‹¬
 			@PathVariable("page") int page,
 			@PathVariable("bno") Long bno){
 		

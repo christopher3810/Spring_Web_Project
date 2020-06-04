@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.test.domain.BoardAttachVO;
 import com.spring.test.domain.BoardVO;
 import com.spring.test.domain.Criteria;
 
@@ -16,9 +17,11 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getListWithPaging(Criteria cri);
 	
-	public void insert(BoardVO board);
+	public void insert(BoardVO board,BoardAttachVO vo);
 	
 	public void insertSelectKey(BoardVO board);
+	
+	public void insertAttachments(BoardVO board);
 	
 	public BoardVO read(Long id);
 	

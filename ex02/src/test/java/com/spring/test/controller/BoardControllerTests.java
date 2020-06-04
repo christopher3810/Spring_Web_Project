@@ -32,7 +32,7 @@ public class BoardControllerTests {
 	private MockMvc mockMvc;
 	
 	
-	@Before /*junit²¨¸¦ importÇØ¾ßµÊ*/
+	@Before /*junitêº¼ë¥¼ importí•´ì•¼ë¨*/
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
@@ -52,8 +52,8 @@ public class BoardControllerTests {
 		
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
 				.param("id", "200")
-				.param("title", "Å×½ºÆ® »õ±Û Á¦¸ñ")
-				.param("content" , "Å×½ºÆ® »õ±Û ³»¿ë")
+				.param("title", "í…ŒìŠ¤íŠ¸ ìƒˆê¸€ ì œëª©")
+				.param("content" , "í…ŒìŠ¤íŠ¸ ìƒˆê¸€ ë‚´ìš©")
 				.param("price" , "25000")
 				.param("size220", "3")
 				).andReturn().getModelAndView().getViewName();
@@ -76,8 +76,8 @@ public class BoardControllerTests {
 		String resultPage = mockMvc
 				.perform(MockMvcRequestBuilders.post("/board/modify")
 						.param("id", "15")
-						.param("title", "¼öÁ¤µÈ Å×½ºÆ® »õ±Û Á¦¸ñ")
-						.param("content", "¼öÁ¤µÈ Å×½ºÆ® »õ±Û ³»¿ë")
+						.param("title", "ìˆ˜ì •ëœ í…ŒìŠ¤íŠ¸ ìƒˆê¸€ ì œëª©")
+						.param("content", "ìˆ˜ì •ëœ í…ŒìŠ¤íŠ¸ ìƒˆê¸€ ë‚´ìš©")
 						.param("price", "50000"))
 						.andReturn().getModelAndView().getViewName();
 						

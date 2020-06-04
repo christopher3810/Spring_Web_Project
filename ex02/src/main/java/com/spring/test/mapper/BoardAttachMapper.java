@@ -1,15 +1,15 @@
 package com.spring.test.mapper;
-//Ã·ºÎÆÄÀÏ Á¤º¸¸¦ DBÀÌ¿ëÇØ¼­ º¸°üÇÔÀ¸·Î ÇØ´ç Ã³¸® SQLÀ» MAPPER ÀÎÅÍÆäÀÌ½º/ XMLÀ» ÅëÇØ¼­ Ã³¸®
+//ì²¨ë¶€íŒŒì¼ ì •ë³´ë¥¼ DBì´ìš©í•´ì„œ ë³´ê´€í•¨ìœ¼ë¡œ í•´ë‹¹ ì²˜ë¦¬ SQLì„ MAPPER ì¸í„°í˜ì´ìŠ¤/ XMLì„ í†µí•´ì„œ ì²˜ë¦¬
 
 import java.util.List;
 
 import com.spring.test.domain.BoardAttachVO;
-//Ã·ºÎÆÄÀÏÀº modify°¡ ¾ø±â¶§¹®¿¡ insert/deleteÀÛ¾÷¸¸ °ÅÄ§ 
+//ì²¨ë¶€íŒŒì¼ì€ modifyê°€ ì—†ê¸°ë•Œë¬¸ì— insert/deleteì‘ì—…ë§Œ ê±°ì¹¨ 
 public interface BoardAttachMapper {
 	public void insert(BoardAttachVO vo);
 	
 	public void delete(String uuid);
-	//¿øº»ÆÄÀÏ
+	//ì›ë³¸íŒŒì¼
 	public List<BoardAttachVO> findByBno(Long id);
 	
 	public void deleteAll(Long id);

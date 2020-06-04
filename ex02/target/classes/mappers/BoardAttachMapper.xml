@@ -6,13 +6,13 @@
 <mapper namespace="com.spring.test.mapper.BoardAttachMapper">
 
 	<insert id="insert">
-		insert into attach (uuid, uploadpath, filename, filetype, bno)
-		values(#{uuid},#{uploadPath},#{fileName},#{fileType},#{bno} )
+		insert into attach (uuid, uploadpath, filename, filetype, bno, maincheck)
+		values(#{uuid},#{uploadPath},#{fileName},#{fileType},#{bno},#{maincheck} );
 	</insert>
 	
 	<delete id="deleteAll">
 	
-		delete from attach where bno = #{bno}
+		delete from attach where bno = #{id}
 	                                     <!-- vo거치면서 id->bno -->
 	</delete>
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-//´ñ±Û ¸ñ·Ï + ÀüÃ¼ ´ñ±Û ¼ö Á¤º¸ ´ã¾Æ¾ßµÊ
+//ëŒ“ê¸€ ëª©ë¡ + ì „ì²´ ëŒ“ê¸€ ìˆ˜ ì •ë³´ ë‹´ì•„ì•¼ë¨
 
 @Data
 @AllArgsConstructor

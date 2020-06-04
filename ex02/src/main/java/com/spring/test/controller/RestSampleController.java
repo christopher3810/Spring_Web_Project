@@ -19,12 +19,12 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class RestSampleController {
 
-	@GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8") // produces¼Ó¼ºÀº ÇØ´ç ¸Ş¼­µå°¡ »ı»êÇÏ´Â MIMEÅ¸ÀÔÀ» ÀÇ¹Ì
+	@GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8") // producesì†ì„±ì€ í•´ë‹¹ ë©”ì„œë“œê°€ ìƒì‚°í•˜ëŠ” MIMEíƒ€ì…ì„ ì˜ë¯¸
 	public String getText() {
 
 		log.info("MIME TYPE : " + MediaType.TEXT_PLAIN_VALUE);
 
-		return "¾È³çÇÏ¼¼¿ä";
+		return "ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
 	}
 
 	@GetMapping(value = "/getSample", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -32,18 +32,18 @@ public class RestSampleController {
 
 	public RestSampleVO getSample() {
 
-		return new RestSampleVO(112, "½ºÅ¸", "·Îµå");
+		return new RestSampleVO(112, "ï¿½ï¿½Å¸", "ï¿½Îµï¿½");
 	}
 
 	@GetMapping(value = "/getMap")
 	public Map<String, RestSampleVO> getMap() {
 
 		Map<String, RestSampleVO> map = new HashMap<>();
-		map.put("First", new RestSampleVO(111, "±×·çÆ®", "ÁÖ´Ï¾î"));
+		map.put("First", new RestSampleVO(111, "ï¿½×·ï¿½Æ®", "ï¿½Ö´Ï¾ï¿½"));
 
 		return map;
-	}// ÇØ½¬¸Ê¿¡ °æ¿ì 'Å°'¿Í '°ª'À» °¡Áö´Â ÇÏ³ªÀÇ °´Ã¼·Î °£ÁÖµÇ¾î ÀÌµ¿ mapÀ» ÀÌ¿ëÇÒ½Ã key¿¡¼ÓÇÏ´Â µ¥ÀÌÅÍ´Â xml·Î º¯È¯µÇ´Â °æ¿ì ÅÂ±×ÀÇ
-		// ÀÌ¸§ÀÌ µÇ±â¿¡ ¹®ÀÚ¿­À» ÁöÁ¤
+	}// í•´ì‰¬ë§µì— ê²½ìš° 'í‚¤'ì™€ 'ê°’'ì„ ê°€ì§€ëŠ” í•˜ë‚˜ì˜ ê°ì²´ë¡œ ê°„ì£¼ë˜ì–´ ì´ë™ mapì„ ì´ìš©í• ì‹œ keyì—ì†í•˜ëŠ” ë°ì´í„°ëŠ” xmlë¡œ ë³€í™˜ë˜ëŠ” ê²½ìš° íƒœê·¸ì˜
+	// ì´ë¦„ì´ ë˜ê¸°ì— ë¬¸ìì—´ì„ ì§€ì •
 
 	@GetMapping(value = "/check", params = { "height", "weight" })
 	public ResponseEntity<RestSampleVO> check(Double height, Double weight) {
@@ -52,8 +52,8 @@ public class RestSampleController {
 
 		ResponseEntity<RestSampleVO> result = null;
 
-		if (height < 150) { //height ¿Í weight¸¦ ¹ŞÀ¸¸é¼­ Á¶°Ç¹®À» ÅëÇØ¼­ µ¥ÀÌÅÍ Àü¼Û
-			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(vo); //»óÅÂÄÚµå¿Í µ¥ÀÌÅÍ Àü¼Û
+		if (height < 150) { //height ì™€ weightë¥¼ ë°›ìœ¼ë©´ì„œ ì¡°ê±´ë¬¸ì„ í†µí•´ì„œ ë°ì´í„° ì „ì†¡
+			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(vo); //ìƒíƒœì½”ë“œì™€ ë°ì´í„° ì „ì†¡
 		} else {
 			result = ResponseEntity.status(HttpStatus.OK).body(vo);
 		}
@@ -62,6 +62,6 @@ public class RestSampleController {
 	}
 
 }
-//±âÁ¸ @Controller´Â ¹®ÀÚ¿­ ¹İÈ¯½Ã jspÆÄÀÏ ÀÌ¸§À¸·Î Ã³¸®ÇÏÁö¸¸ @RestControllerÀÇ °æ¿ì¿¡´Â ¼ø¼öÇÑ µ¥ÀÌÅÍ°¡ µË´Ï´Ù
-//Å©·Ò °Ë»ç ³×Æ®¿öÅ© ctrl + rÀ»ÅëÇØ¼­ ÇØ´ç µ¥ÀÌÅÍ Æ÷¸äÀ» È®ÀÎÇÒ¼ö ÀÖ½À´Ï´Ù 
-//Rest¹æ½ÄÀ¸·Î È£Ãâ½Ã È­¸éÀÚÃ¼°¡ ¾Æ´Ï¶ó µ¥ÀÌÅÍ ÀÚÃ¼¸¦ Àü¼ÛÇÏ´Â ¹æ½ÄÀ¸·Î Ã³¸®µÇ±â ¶§¹®¿¡ µ¥ÀÌÅÍ ¿äÃ»ÇÑ ÂÊ¿¡¼­ Á¤»óÀû µ¥ÀÌÅÍÀÎÁö ºñÁ¤»ó µ¥ÀÌÅÍÀÎÁö ±¸ºĞÇÒ¼ö ÀÖ´Â ¹æ¹ı Á¦°ø ÇØ¾ßµÊ
+//ê¸°ì¡´ @ControllerëŠ” ë¬¸ìì—´ ë°˜í™˜ì‹œ jspíŒŒì¼ ì´ë¦„ìœ¼ë¡œ ì²˜ë¦¬í•˜ì§€ë§Œ @RestControllerì˜ ê²½ìš°ì—ëŠ” ìˆœìˆ˜í•œ ë°ì´í„°ê°€ ë©ë‹ˆë‹¤
+//í¬ë¡¬ ê²€ì‚¬ ë„¤íŠ¸ì›Œí¬ ctrl + rì„í†µí•´ì„œ í•´ë‹¹ ë°ì´í„° í¬ë©§ì„ í™•ì¸í• ìˆ˜ ìˆìŠµë‹ˆë‹¤ 
+//Restë°©ì‹ìœ¼ë¡œ í˜¸ì¶œì‹œ í™”ë©´ìì²´ê°€ ì•„ë‹ˆë¼ ë°ì´í„° ìì²´ë¥¼ ì „ì†¡í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬ë˜ê¸° ë•Œë¬¸ì— ë°ì´í„° ìš”ì²­í•œ ìª½ì—ì„œ ì •ìƒì  ë°ì´í„°ì¸ì§€ ë¹„ì •ìƒ ë°ì´í„°ì¸ì§€ êµ¬ë¶„í• ìˆ˜ ìˆëŠ” ë°©ë²• ì œê³µ í•´ì•¼ë¨

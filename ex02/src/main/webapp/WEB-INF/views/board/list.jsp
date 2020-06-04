@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Floating Div Product Grid Demo</title>
+<title>신발세상에오신걸 환영합니다</title>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
@@ -19,14 +19,16 @@
 </head>
 <body>
 
+
 	<header id="header">
 		<div class="search-wrapper" style="width: 100%">
+			<a href="/board/register"><button class="btn btn-default" style="float:left;">상품등록하러가기</button></a>
 			<form id="search-bar" action="/board/list" method='get'>
 				<select name='type' id="search-option">
 					<option value="T" selected>통합검색</option>
 				</select> 
 				<input type="text" name="keyword" id="focus" required class="search-box"
-					placeholder="제품명을 입력하세요" style="width: 50%" value='<c:out value="${pageMaker.cri.keyword}" />'/>
+					placeholder="제품명을 입력하세요" style="width: 50%" value="<c:out value="${pageMaker.cri.keyword}" />"/>
 				<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
 				<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/>
 				<button class="close-icon" type="reset"></button>
@@ -139,17 +141,21 @@
 	<!-- /header -->
 
 	<main>
-		<h1>Resize your browser to preview okayNav</h1>
+		<h1>그냥 갈수 없는 신발 모음집</h1>
 		<div id="p-float">
 			<c:choose>
 				<c:when test="${!empty list}">
 					<c:forEach items="${list }" var="board">
 						<div class="p-float">
 							<div class="p-float-in">
-								<a href='/board/boardproduct?id=<c:out value="${board.id}"/>'><img
-									class="p-img" align="center"
-									src="${pageContext.request.contextPath}/resources/images/${board.attachments}" />
+								<a href='/board/boardproduct?id=<c:out value="${board.id}"/>'>
+									<div class="mainimg">
+										<ul>
+										</ul>
+									</div>
+									<img class="p-img" align="center" src='/display?fileName=${board.attachments}'>
 								</a>
+								
 								<div class="p-name" align="right">${board.title }</div>
 								<div class="p-price" align="right">${board.price }원</div>
 								<div class="p-desc" align="right">
@@ -165,7 +171,7 @@
 				<c:otherwise>
 					<div class="p-float">
 						<div class="p-float-in">
-							<h1>마지막 장입니다</h1>
+							<h1>마지막장입니다</h1>
 						</div>
 					</div>
 				</c:otherwise>
@@ -226,16 +232,18 @@
 	</main>
 	<style>
 	#search-option {
-		border-radius: 0; /* 아이폰 사파리 보더 없애기 */
-		-webkit-appearance: none; /* 화살표 없애기 for chrome*/
-		-moz-appearance: none; /* 화살표 없애기 for firefox*/
-		appearance: none; /* 화살표 없애기 공통*/
+		border-radius: 0; 
+		-webkit-appearance: none; 
+		-moz-appearance: none; 
+		appearance: none; 
 		border-style: none;
 		}
 		
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var fileCallPath = encodeURIComponent (attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName);
+			"<img id = 'productimg' src='/display?fileName="+fileCallPath+"'>"
 					
 					console.log(replyService);
 					var actionForm = $("#actionForm");

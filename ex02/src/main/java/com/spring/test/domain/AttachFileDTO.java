@@ -9,6 +9,8 @@ public class AttachFileDTO {
 	private String uploadPath;
 	private String uuid;
 	private boolean image;
+	private boolean maincheck;
 	
-	//ÆÄÀÏ¸í/¾÷·Îµå°æ·Î/uuid/ÀÌ¹ÌÁö¿©ºÎ
+	
+	//íŒŒì¼ëª…/ì—…ë¡œë“œê²½ë¡œ/uuid/ì´ë¯¸ì§€ì—¬ë¶€
 }

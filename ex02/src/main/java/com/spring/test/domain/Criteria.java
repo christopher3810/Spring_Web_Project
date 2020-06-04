@@ -11,14 +11,14 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
-	private int pageNum; //º¸¿©ÁÙ ÆäÀÌÁö ¹øÈ£
-	private int amount; //ÆäÀÌÁö´ç º¸¿©ÁÙ °Ô½Ã±ÛÀÇ °³¼ö 
+	private int pageNum; //ë³´ì—¬ì¤„ í˜ì´ì§€ ë²ˆí˜¸
+	private int amount; //í˜ì´ì§€ë‹¹ ë³´ì—¬ì¤„ ê²Œì‹œê¸€ì˜ ê°œìˆ˜ 
 	
 	private String type;
 	private String keyword;
 	
-	/*¿ëµµ°¡ pagenum°ú amount°ªÀ» Àü´ŞÇÏ´Â ¿ëµµÀÌÁö¸¸ »ı¼ºÀÚ¸¦ ÅëÇØ¼­ ±âº»°ªÀ» 1/10°³·Î ÁöÁ¤ÇØ¼­ Ã³¸®ÇÕ´Ï´Ù*/
-	/*ÃÖÃÊ °Ô½ÃÆÇ ÁøÀÔÇÒ ¶§¸¦ À§ÇØ¼­ ±âº» °ª ¼³Á¤ */
+	/*ìš©ë„ê°€ pagenumê³¼ amountê°’ì„ ì „ë‹¬í•˜ëŠ” ìš©ë„ì´ì§€ë§Œ ìƒì„±ìë¥¼ í†µí•´ì„œ ê¸°ë³¸ê°’ì„ 1/10ê°œë¡œ ì§€ì •í•´ì„œ ì²˜ë¦¬í•©ë‹ˆë‹¤*/
+	/*ìµœì´ˆ ê²Œì‹œíŒ ì§„ì…í•  ë•Œë¥¼ ìœ„í•´ì„œ ê¸°ë³¸ ê°’ ì„¤ì • */
 	
 
 	public Criteria() {
@@ -33,21 +33,21 @@ public class Criteria {
 	
 	public int getPageStart() {
         return (this.pageNum-1)*amount;
-    }// ÇöÀç ÆäÀÌÁöÀÇ °Ô½Ã±Û ½ÃÀÛ ¹øÈ£ = ÇöÀç ÆäÀÌÁö ¹øÈ£ -1 * ÆäÀÌÁö´ç º¸¿©ÁÖ´Â °¹¼ö
+    }// í˜„ì¬ í˜ì´ì§€ì˜ ê²Œì‹œê¸€ ì‹œì‘ ë²ˆí˜¸ = í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸ -1 * í˜ì´ì§€ë‹¹ ë³´ì—¬ì£¼ëŠ” ê°¯ìˆ˜
 	
 	public String[] getTypeArr() {
 		
 		return type == null? new String[] {}: type.split("");
 	}
 	
-	//°Ô½Ã¹°ÀÇ »èÁ¦ÈÄ ÆäÀÌÁö ¹øÈ£³ª °Ë»ö Á¶°Ç À¯ÁöÇÏ¸é¼­ ÀÌµ¿ÇÏ±â À§ÇØ redirect¿¡ ÇÊ¿äÇÑ ÆÄ¶ó¹ÌÅÍ ¸Å¹ø Ãß°¡ÇØ¾ßµÇ´Â ºÒÆí
-	//criteria¿¡¼­ Ã³¸®
-	//UriComponentsBuilder´Â ºê¶ó¿ìÀú¿¡¼­ GET¹æ½ÄµîÀÇ ÆÄ¶ó¹ÌÅÍ Àü¼Û¿¡ »ç¿ëµÇ´Â ¹®ÀÚ¿­QUERYstringÀ» ¼Õ½±°Ô Ã³¸®ÇÒ ¼ö ÀÖ´Â Å¬·¡½º 
+	//ê²Œì‹œë¬¼ì˜ ì‚­ì œí›„ í˜ì´ì§€ ë²ˆí˜¸ë‚˜ ê²€ìƒ‰ ì¡°ê±´ ìœ ì§€í•˜ë©´ì„œ ì´ë™í•˜ê¸° ìœ„í•´ redirectì— í•„ìš”í•œ íŒŒë¼ë¯¸í„° ë§¤ë²ˆ ì¶”ê°€í•´ì•¼ë˜ëŠ” ë¶ˆí¸
+	//criteriaì—ì„œ ì²˜ë¦¬
+	//UriComponentsBuilderëŠ” ë¸Œë¼ìš°ì €ì—ì„œ GETë°©ì‹ë“±ì˜ íŒŒë¼ë¯¸í„° ì „ì†¡ì— ì‚¬ìš©ë˜ëŠ” ë¬¸ìì—´QUERYstringì„ ì†ì‰½ê²Œ ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” í´ë˜ìŠ¤ 
 	public String getListLink() {
 		
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 				.queryParam("PageNum", this.pageNum)
-				.queryParam("amout", this.getAmount())
+				.queryParam("amount", this.getAmount())
 				.queryParam("type", this.getType())
 				.queryParam("keyword", this.getKeyword());
 				

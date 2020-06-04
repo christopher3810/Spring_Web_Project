@@ -8,12 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select*from board where id > 0
 		]]>
 	</select>
-
 	<insert id="insert">
 		insert into board
-		(id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
+		(attachments, id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
 		values
-		((select *from (select max(id)+1 from board) next), <!--nextval오라클 시퀀스여서 
+		(#{uploadPath},select *from (select max(id)+1 from board) next), <!--nextval오라클 시퀀스여서 
 			mysql식으로 autoincrease sql작업해줘야됨 -->
 		#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time},#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
@@ -29,7 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{id},#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time},#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
-
 	<select id="read" resultType="com.spring.test.domain.BoardVO">
 		select * from board 
 		where 
@@ -37,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<delete id="delete">
+	
 		delete from board where id = #{id}<!-- 오라클과 다른점은 mysql은 from 테이블명 오라클은 
 			from 안써두댐 -->
 	</delete>

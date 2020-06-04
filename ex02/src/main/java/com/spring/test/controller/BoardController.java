@@ -1,15 +1,24 @@
 package com.spring.test.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,19 +38,20 @@ import com.spring.test.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-/*BoardController ´Â BoardService¿¡ ´ëÇØ ÀÇÁ¸Àû @AllArgsConstructor¸¦ ÀÌ¿ëÇØ¼­ »ı¼ºÀÚ ¸¸µé°í ÀÚµ¿À¸·Î ÁÖÀÔÇÏ°Ô ¸¸µë*/
-/*AllArgsConstructor ¸ğµç ÇÊµåÀÇ »ı¼ºÀÚ¸¦ »ı¼ºÇØÁÜ*/
+
+/*BoardController ëŠ” BoardServiceì— ëŒ€í•´ ì˜ì¡´ì  @AllArgsConstructorë¥¼ ì´ìš©í•´ì„œ ìƒì„±ì ë§Œë“¤ê³  ìë™ìœ¼ë¡œ ì£¼ì…í•˜ê²Œ ë§Œë“¬*/
+/*AllArgsConstructor ëª¨ë“  í•„ë“œì˜ ìƒì„±ìë¥¼ ìƒì„±í•´ì¤Œ*/
 @Controller
 @Log4j
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-
+	
 	private BoardService service;
 
 	/*
-	 * list´Â °Ô½Ã¹° ¸ñ·ÏÀ» Àü´ŞÇØ¾ß ÇÔÀ¸·Î ModelÀ» ÆÄ¶ó¹ÌÅÍ·Î ÁöÁ¤ ÀÌ¸¦ ÅëÇØ BoardServiceImpl °´Ã¼ÀÇ
-	 * getList()°á°ú¸¦ ´ã¾Æ Àü´Ş addAttribute
+	 * listëŠ” ê²Œì‹œë¬¼ ëª©ë¡ì„ ì „ë‹¬í•´ì•¼ í•¨ìœ¼ë¡œ Modelì„ íŒŒë¼ë¯¸í„°ë¡œ ì§€ì • ì´ë¥¼ í†µí•´ BoardServiceImpl ê°ì²´ì˜
+	 * getList()ê²°ê³¼ë¥¼ ë‹´ì•„ ì „ë‹¬ addAttribute
 	 */
 	/*
 	 * @GetMapping("/list") public void list(Model model) {
@@ -137,7 +147,7 @@ public class BoardController {
 		
 		if (service.remove(id)) {
 			
-			//Attach Files »èÁ¦
+			//Attach Files ï¿½ï¿½ï¿½ï¿½
 			deleteFiles(attachList);
 			log.info("attachList" + attachList);
 			rttr.addFlashAttribute("result", "success");
@@ -153,7 +163,7 @@ public class BoardController {
 		
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	}
-	//BoardController´Â restcontroller·Î ÀÛ¼ºµÇÁö ¾Ê¾Ò±â ¶§¹®¿¡ Á÷Á¢ @responseBody Àû¿ëÇØ¼­ jsonµ¥ÀÌÅÍ º¯È¯ÇØ¾ßµÊ 
+	//BoardControllerëŠ” restcontrollerë¡œ ì‘ì„±ë˜ì§€ ì•Šì•˜ê¸° ë•Œë¬¸ì— ì§ì ‘ @responseBody ì ìš©í•´ì„œ jsonë°ì´í„° ë³€í™˜í•´ì•¼ë¨ 
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
@@ -184,5 +194,49 @@ public class BoardController {
 			}//end try catchx 
 			
 		});
+		
+		
 	}
+	/*
+	@GetMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName){
+		//ë¬¸ìì—´ë¡œ íŒŒì¼ ê²½ë¡œê°€ í¬í•¨ëœ fileName íŒŒë¼ë¯¸í„°ë¡œ ë°›ê³   byte[]ë¥¼ ì „ì†¡ ë¸Œë¼ìš°ì €ì— ë³´ë‚´ì£¼ëŠ” MIMEíƒ€ì…ì´ íŒŒì¼ ì¢…ë¥˜ì— ë”°ë¼ ë‹¬ë¼ì§ 
+		log.info("fileName: " + fileName);
+		
+		File file = new File("D:\\web_upload\\" + fileName);
+		
+		log.info("file: " + file);
+		
+		ResponseEntity<byte[]>result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			//probeContentType í™•ì¥ìë¥¼ ì´ìš©í•˜ì—¬ ë§ˆì„íƒ€ì…(ë¯¸ë””ì–´íƒ€ì…)ì„ íŒë‹¨í•¨ í™•ì¥ìê°€ ì—†ëŠ” íŒŒì¼ì€ nullì„ë°˜í™˜ MIMEíƒ€ì… ë°ì´í„°ë¥¼ HTTPí—¤ë” ë©”ì„¸ì§€ì— í¬í•¨
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header, HttpStatus.OK);
+		} catch(IOException e){
+			
+			e.printStackTrace();
+		}
+		return result;
+	}
+	*/
+	@RequestMapping(value = "/display", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", method = RequestMethod.GET)
+	public @ResponseBody BufferedImage getImage(String fileName) {
+	       try {
+	    	   
+	    	   String file = "D:\\web_upload\\" + fileName;
+	    	   log.info(file);
+	           InputStream inputStream = this.getClass().getResourceAsStream(file);
+	           return ImageIO.read(inputStream);
+
+
+	       } catch (IOException e) {
+	           throw new RuntimeException(e);
+	       }
+	}
+	
+
 }

@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor // ¸ğµç ¼Ó¼ºÀ» »ç¿ëÇÏ´Â »ı¼ºÀÚ¸¦ À§ÇØ
-@NoArgsConstructor //ºñ¾îÀÖ´Â »ı¼ºÀÚ
+@AllArgsConstructor // ëª¨ë“  ì†ì„±ì„ ì‚¬ìš©í•˜ëŠ” ìƒì„±ìë¥¼ ìœ„í•´
+@NoArgsConstructor //ë¹„ì–´ìˆëŠ” ìƒì„±ì
 public class RestSampleVO {
 	
 	private Integer mno;

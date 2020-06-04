@@ -1,5 +1,5 @@
 package com.spring.test.domain;
-//AttachDTO¿Í À¯»ç /BnoÃß°¡ µÇ¾ú°í È¥¶õ ÇÇÇÏ±âÀ§ÇØ ±×³É »õ·Î ÆÄ±â 
+//AttachDTOì™€ ìœ ì‚¬ /Bnoì¶”ê°€ ë˜ì—ˆê³  í˜¼ë€ í”¼í•˜ê¸°ìœ„í•´ ê·¸ëƒ¥ ìƒˆë¡œ íŒŒê¸° 
 import lombok.Data;
 
 @Data
@@ -8,8 +8,8 @@ public class BoardAttachVO {
 	private String uuid;
 	private String uploadPath;
 	private String fileName;
-	private boolean fileType; //ÀÌ¹ÌÁö ÆÄÀÏ ¿©ºÎ¸¦ ÆÇ´Ü 
-	
+	private boolean fileType; //ì´ë¯¸ì§€ íŒŒì¼ ì—¬ë¶€ë¥¼ íŒë‹¨ 
+	private boolean maincheck;
 	private long bno;
 	
 }

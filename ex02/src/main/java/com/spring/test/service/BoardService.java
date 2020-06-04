@@ -1,5 +1,7 @@
 package com.spring.test.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import com.spring.test.domain.BoardAttachVO;
@@ -22,4 +24,6 @@ public interface BoardService {
 	public int getTotal(Criteria cri);
 	
 	public List<BoardAttachVO> getAttachList(Long bno);
+	
+	public String encodeURIComponent(String component);
 }

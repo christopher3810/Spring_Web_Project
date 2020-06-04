@@ -24,13 +24,12 @@ div.p-float-in {
 	box-sizing: border-box;
 	margin: 5px;
 	padding: 10px;
-	border: 1px solid #f2dcdc;
-	background: #fff7f7;
+	border: 1px solid #BDBDBD;
 }
 
 img.p-img {
 	width: 100%;
-	height: auto;
+	height: 260px;
 }
 
 div.p-name {

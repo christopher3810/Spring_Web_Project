@@ -19,23 +19,23 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ReplyServiceImpl implements ReplyService{
 	
-	//ReplyMapper¿¡ ÀÇÁ¸Àû °ü°è  setter»ç¿ë or allargsconstructor »ç¿ë °¡´É
+	//ReplyMapperì— ì˜ì¡´ì  ê´€ê³„  setterì‚¬ìš© or allargsconstructor ì‚¬ìš© ê°€ëŠ¥
 	@Setter(onMethod_= @Autowired)
 	private ReplyMapper mapper;
 	
 	@Setter(onMethod_= @Autowired)
 	private BoardMapper boardMapper;
-	//»õ·Î¿î ´ñ±ÛÀÌ Ãß°¡µÇ°Å³ª »èÁ¦µÇ´Â »óÈ²ÀÌ µÇ¸é BoardMapper¿Í ReplyMapper¸¦ ÀÌ¿ëÇØ¼­ Æ®·£Àè¼ÇÀ» »ç¿ëÇØ¼­ ´ñ±Û °¹¼ö È®ÀÎÇØÁÖ´Â°É ³Ñ°ÜÁà¾ßµÊ
-	//@Setter¸¦ ÀÌ¿ëÇØ¼­ ÁÖÀÔ
-	
-	//µî·Ï°ú »èÁ¦´Â »óÇ° ÆäÀÌÂ¡µµ ¹Ù²î¾î¾ßÇÔÀ¸·Î ¸Ş¼­µå Æ®·£Àè¼ÇÇÊ¿ä
+	//ìƒˆë¡œìš´ ëŒ“ê¸€ì´ ì¶”ê°€ë˜ê±°ë‚˜ ì‚­ì œë˜ëŠ” ìƒí™©ì´ ë˜ë©´ BoardMapperì™€ ReplyMapperë¥¼ ì´ìš©í•´ì„œ íŠ¸ëœì­ì…˜ì„ ì‚¬ìš©í•´ì„œ ëŒ“ê¸€ ê°¯ìˆ˜ í™•ì¸í•´ì£¼ëŠ”ê±¸ ë„˜ê²¨ì¤˜ì•¼ë¨
+		//@Setterë¥¼ ì´ìš©í•´ì„œ ì£¼ì…
+		
+		//ë“±ë¡ê³¼ ì‚­ì œëŠ” ìƒí’ˆ í˜ì´ì§•ë„ ë°”ë€Œì–´ì•¼í•¨ìœ¼ë¡œ ë©”ì„œë“œ íŠ¸ëœì­ì…˜í•„ìš”
 	@Transactional
 	@Override
 	public int register(ReplyVO vo) {
 		// TODO Auto-generated method stub
 		
 		log.info("register......" + vo);
-		boardMapper.updateReplyCnt(vo.getBno(), 1); //µî·Ï½Ã ÇØ´ç »óÇ° ´ñ±Û¼ö 1Áõ°¡
+		boardMapper.updateReplyCnt(vo.getBno(), 1); //ë“±ë¡ì‹œ í•´ë‹¹ ìƒí’ˆ ëŒ“ê¸€ìˆ˜ 1ì¦ê°€
 		return mapper.insert(vo);
 	}
 
@@ -62,9 +62,9 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		log.info("remove......"+rno);
 		
-		ReplyVO vo = mapper.read(rno);//´ñ±Û ÀÚÃ¼ ¹øÈ£ÀÎrno¸¦ ¹Ş±â¿¡ ÇØ´ç ´ñ±ÛÀÇ °³½Ã¹°À» ¾Ë¾Æ³»´Â °æ¿ì°¡ ÇÊ¿äÇÔ ÆÄ¶ó¹ÌÅÍ·Î bno±îÁö ¹ŞÀ»¼öµµ ÀÖÁö¸¸ ±×·²°æ¿ì ÄÁÆ®·Ñ·¯±îÁö ¼öÁ¤ÇØ¾ßµÊ
+		ReplyVO vo = mapper.read(rno);//ëŒ“ê¸€ ìì²´ ë²ˆí˜¸ì¸rnoë¥¼ ë°›ê¸°ì— í•´ë‹¹ ëŒ“ê¸€ì˜ ê°œì‹œë¬¼ì„ ì•Œì•„ë‚´ëŠ” ê²½ìš°ê°€ í•„ìš”í•¨ íŒŒë¼ë¯¸í„°ë¡œ bnoê¹Œì§€ ë°›ì„ìˆ˜ë„ ìˆì§€ë§Œ ê·¸ëŸ´ê²½ìš° ì»¨íŠ¸ë¡¤ëŸ¬ê¹Œì§€ ìˆ˜ì •í•´ì•¼ë¨
 		
-		boardMapper.updateReplyCnt(vo.getBno(), -1); //»èÁ¦½Ã ´ñ±Û¼ö ÁÙ¿©ÁÖ°í
+		boardMapper.updateReplyCnt(vo.getBno(), -1); //ì‚­ì œì‹œ ëŒ“ê¸€ìˆ˜ ì¤„ì—¬ì£¼ê³ 
 		return mapper.delete(rno);
 	}
 
@@ -83,7 +83,7 @@ public class ReplyServiceImpl implements ReplyService{
 		return new ReplyPageDTO(
 				mapper.getCountByBno(bno),
 				mapper.getListWithPaging(cri, bno));
-	}//Ä«¿îÆÃ°ª°ú ÇØ´ç »óÇ° ¹øÈ£ÀÇ ÆäÀÌÂ¡°ª
+	}//ì¹´ìš´íŒ…ê°’ê³¼ í•´ë‹¹ ìƒí’ˆ ë²ˆí˜¸ì˜ í˜ì´ì§•ê°’
 	
 	
 

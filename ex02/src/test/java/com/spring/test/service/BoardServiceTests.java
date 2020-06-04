@@ -35,13 +35,13 @@ public class BoardServiceTests {
 		public void testRegister() {
 			
 			BoardVO board = new BoardVO();
-			board.setTitle("»õ·Î ÀÛ¼ºÇÏ´Â ±Û11");
-			board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë11");
-			board.setAttachments("¿îµ¿È­111");
+			board.setTitle("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ê¸€11");
+			board.setContent("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©11");
+			board.setAttachments("ìš´ë™í™”111");
 			
 			service.register(board);
 			
-			log.info("»ı¼ºµÈ °Ô½Ã¹°ÀÇ ¹øÈ£ : " + board.getId());
+			log.info("ìƒì„±ëœ ê²Œì‹œë¬¼ì˜ ë²ˆí˜¸ : " + board.getId());
 		}
 		
 		@Test
@@ -72,7 +72,7 @@ public class BoardServiceTests {
 				return;
 			}
 			
-			board.setTitle("Á¦¸ñÀ» ¼öÁ¤ÇÑ °ª.");
+			board.setTitle("ì œëª©ì„ ìˆ˜ì •í•œ ê°’.");
 			log.info("MODIFY RESULT :  " + service.modify(board));
 		}
 }

@@ -25,9 +25,8 @@ public class BoardVO {
 	private int size270;
 	private int size280;
 	private int size290;
-	
 	private int replyCnt;
 	
-	private List<BoardAttachVO> attachList; //µî·Ï½Ã ÇÑ¹ø¿¡ BoardAttachVOÃ³¸® ÇÒ¼ö ÀÖµµ·Ï List·Î Ãß°¡ 
-	//Ã·ºÎÆÄÀÏ Á¤º¸ ¼öÁı  filename/uuid/uploadPath/fileType
+	private List<BoardAttachVO> attachList; //ë“±ë¡ì‹œ í•œë²ˆì— BoardAttachVOì²˜ë¦¬ í• ìˆ˜ ìˆë„ë¡ Listë¡œ ì¶”ê°€ 
+	//ì²¨ë¶€íŒŒì¼ ì •ë³´ ìˆ˜ì§‘  filename/uuid/uploadPath/fileType
 }

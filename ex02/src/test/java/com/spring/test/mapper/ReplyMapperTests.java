@@ -36,7 +36,7 @@ public class ReplyMapperTests {
 			ReplyVO vo = new ReplyVO();
 			
 			vo.setBno(bnoArr[i%5]);
-			vo.setReply("´ñ±Û Å×½ºÆ®" + i);
+			vo.setReply("ëŒ“ê¸€ í…ŒìŠ¤íŠ¸" + i);
 			vo.setReplyer("replyer" + i);
 			
 			mapper.insert(vo);
@@ -92,7 +92,7 @@ public class ReplyMapperTests {
 	*/
 	@Test
 	public void testList2() {
-		//0 1 2ºÎÅÍ 10°³ limit
+		//0 1 2ë¶€í„° 10ê°œ limit
 		Criteria cri = new Criteria(0,10);
 		
 		List<ReplyVO> replies = mapper.getListWithPaging(cri, 2L);

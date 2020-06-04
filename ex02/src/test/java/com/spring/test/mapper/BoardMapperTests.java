@@ -30,11 +30,11 @@ public class BoardMapperTests {
 	public void testInsert() {
 		
 		BoardVO board = new BoardVO();
-		board.setTitle("»õ·Î ¸¸µç »óÇ°");
-		board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë");
-		board.setAttachments("¿îµ¿È­123");
+		board.setTitle("ìƒˆë¡œ ë§Œë“  ìƒí’ˆ");
+		board.setContent("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©");
+		board.setAttachments("ìš´ë™í™”123");
 		
-		mapper.insert(board);
+		mapper.insert(board, null);
 		
 		log.info(board);
 		
@@ -44,9 +44,9 @@ public class BoardMapperTests {
 	public void testInsertSelectKey() {
 		
 		BoardVO board = new BoardVO();
-		board.setTitle("»õ·Î ¸¸µç »óÇ°2");
-		board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë2");
-		board.setAttachments("¿îµ¿È­456");
+		board.setTitle("ìƒˆë¡œ ë§Œë“  ìƒí’ˆ2");
+		board.setContent("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©2");
+		board.setAttachments("ìš´ë™í™”456");
 		board.setPrice(30000);
 		
 		mapper.insertSelectKey(board);
@@ -74,9 +74,9 @@ public class BoardMapperTests {
 		BoardVO board = new BoardVO();
 		
 		board.setId(6L);
-		board.setTitle("¾÷µ¥ÀÌÆ® »õ·Î¸¸µç °Í");
-		board.setContent("¾÷µ¥ÀÌÆ®µÈ ³»¿ë");
-		board.setAttachments("¾÷µ¥ÀÌÆ® ¿îµ¿È­");
+		board.setTitle("ì—…ë°ì´íŠ¸ ìƒˆë¡œë§Œë“  ê²ƒ");
+		board.setContent("ì—…ë°ì´íŠ¸ëœ ë‚´ìš©");
+		board.setAttachments("ì—…ë°ì´íŠ¸ ìš´ë™í™”");
 		board.setPrice(3000);
 
 		int count = mapper.update(board);

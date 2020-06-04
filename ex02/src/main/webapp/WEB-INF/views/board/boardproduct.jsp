@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="all">
-	<header id="header">
+<header id="header">
 		<nav id="headmenu">
 			<ul>
 				<li><a class="site-logo" href="/board/list">Logo</a></li>
@@ -135,8 +135,8 @@
 		<div class="container">
 			<div class="k-card k-card-horizontal">
 				<div id="imagecontainer">
-					<img id="productimg" class="k-card-image"
-						src="${pageContext.request.contextPath}/resources/images/${board.attachments}">
+					<!--  <img id="productimg" class="k-card-image"
+						src="${pageContext.request.contextPath}/resources/images/${board.attachments}">-->
 				</div>
 				<div class="k-vbox k-column">
 					<div class="k-card-header">
@@ -246,7 +246,7 @@
 								<strong class="primary-font">운영자</strong>
 								<small class="pull-right text-muted">0000-00-00 00:00</small>
 								</div>
-								<p> 댓글을 등록하여 회원님의 생각을 표연하세요!!</p>
+								<p>댓글을 등록하여 회원님의 생각을 표연하세요!!</p>
 						</div>
 					</li>
 				</ul>
@@ -312,7 +312,7 @@
 .all{
 	width: 1350px;
     max-width: none !important;
-   /*반응형 막기*/
+     /*반응형 막기*/
 }
 #example {
 	margin-top: 10rem;
@@ -452,6 +452,9 @@
 	width: 10%;
 	display: inline;
 }
+#imgli {
+ list-style:none;
+}
 
 </style>
 	<script type="text/javascript" src="/resources/js/reply.js"></script>
@@ -514,7 +517,7 @@
 	<script>
 	
 	$(document).ready(function(){
-		//$(function(){}); $(document).ready(function(){ }); 와 $(function(){ }); 동일한 의미 간편하게 후자와 같이 많이 사용을 합니다. 
+		//$(function(){}); $(document).ready(function(){ }); 와$(function(){ });동일한 의미 간편하게 후자와 같이 많이 사용을 합니다.  
 		$(function(){
 			var bno = ${board.id};
 			
@@ -524,12 +527,11 @@
 				
 				var str ="";
 				
-				$(arr).each(function(i, attach){
-					
-					//img 
-					if(attach.fileType){
-						var fileCallPath = encodeURIComponent (attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName);
-						
+				$(arr).each(function(i, attach){ 
+					if(attach.fileType && attach.maincheck == false ){
+						var test = attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName
+						//s_ 섬네일용 사진이라 크기확대시 깨짐 원본 이미지를 넣어주자 
+						var fileCallPath = encodeURIComponent (attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName);
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
 						"data-type='"+attach.fileType+"'><div>";
 						str += "<img src='/display?fileName="+fileCallPath+"'>";
@@ -538,9 +540,23 @@
 						$(".uploadResult ul").html(str);
 					}
 				});
+				//main img
+				var str ="";				
+				$(arr).each(function(i, attach){
+					if(attach.maincheck == true){
+						var fileCallPath = encodeURIComponent (attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName);
+						
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
+						"data-type='"+attach.fileType+"' id = 'imgli'><div>";
+						str += "<img id = 'productimg' src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str += "</li>";
+						$("#imagecontainer").html(str);
+					}
+				});
 				var str ="";
 				$(arr).each(function(i, attach){
-					if(!attach.fileType){
+					if(!attach.fileType && attach.maincheck ==false){
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
 						"data-type='"+attach.fileType+"' ><a><div>";
 						str += "<img src='/resources/images/attach.png'>";
@@ -807,7 +823,7 @@
 														.val();
 												var pricetemp = '';
 
-												if ($("#size" + sizedata).length > 0) { //수행할 코드 }{
+												if ($("#size" + sizedata).length > 0) { //수행할 코드}{
 													//	$('#sizecounter'+sizedata).val('원하는 값');
 													$('#' + sizedata).get(0).value++
 													var pricevalue = $(
@@ -832,7 +848,7 @@
 																			+ sizedata
 																			+ '" style="display:inline; margin-left:20%">'
 																			+ sizeprice
-																			+ '</h4><h4 class="sizenum" style="margin:0;">원</h4><button type="button" id="x_but'+sizedata+'">X</button></div>');
+																			+ '</h4><h4 class="sizenum" style="margin:0;">��</h4><button type="button" id="x_but'+sizedata+'">X</button></div>');
 													$("#x_but" + sizedata)
 															.click(
 																	function() {

@@ -1,5 +1,7 @@
 package com.spring.test.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,26 +29,57 @@ public class BoardServiceImpl implements BoardService {
 	@Setter(onMethod_= @Autowired)
 	private BoardAttachMapper attachMapper;
 	
+	//uricomponentìë°”ì—ì„œ ì‚¬ìš©ê°€ëŠ¥í•˜ê²Œí•˜ëŠ” ê°ì·Œ
+	@Override
+	public String encodeURIComponent(String component) {
+		String result = null;      
+		
+		try {       
+			result = URLEncoder.encode(component, "UTF-8")   
+				   .replaceAll("\\%28", "(")                          
+				   .replaceAll("\\%29", ")")   		
+				   .replaceAll("\\+", "%20")                          
+				   .replaceAll("\\%27", "'")			   
+				   .replaceAll("\\%21", "!")
+				   .replaceAll("\\%7E", "~");
+		}
+		catch (UnsupportedEncodingException e) {       
+			result = component;     
+		}      
+		
+		return result;   
+	 
+	}
+	
 	@Transactional
 	@Override
 	public void register(BoardVO board) {
 		// TODO Auto-generated method stub
 		log.info("register......" + board);
 		
-		mapper.insertSelectKey(board);
 		
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
 			return;
 		}
-		
 		board.getAttachList().forEach(attach ->{
-			
+			//ë©”ì¸ ì´ë¯¸ì§€ íŒŒì¼ ê²½ë¡œ 
+			if(attach.isMaincheck())
+			{
+				String temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
+				temp = encodeURIComponent(temp);
+				board.setAttachments(temp);
+			}
+		});
+		mapper.insertSelectKey(board);
+		board.getAttachList().forEach(attach ->{
+			//(CONCAT(#{uploadpath},'/s_' ,#{uuid},'_',#{fileName});
 			attach.setBno(board.getId());
 			attachMapper.insert(attach);
+			
 		});
 	}
  
-	/*Á¶È¸ ÀÛ¾÷ ±¸Çö°ú Å×½ºÆ® Á¶È¸ ´Â °Ô½Ã¹°ÀÇ ¹øÈ£°¡ ÆÄ¶ó¹ÌÅÍ BoardVOÀÇ ÀÎ½ºÅÏ½º°¡ ¸®ÅÏÀÌ µÊ*/
+	/*ì¡°íšŒ ì‘ì—… êµ¬í˜„ê³¼ í…ŒìŠ¤íŠ¸ ì¡°íšŒ ëŠ” ê²Œì‹œë¬¼ì˜ ë²ˆí˜¸ê°€ íŒŒë¼ë¯¸í„° BoardVOì˜ ì¸ìŠ¤í„´ìŠ¤ê°€ ë¦¬í„´ì´ ë¨*/
 	@Override 
 	public BoardVO get(Long id) {
 		
@@ -59,10 +92,10 @@ public class BoardServiceImpl implements BoardService {
 	public boolean modify(BoardVO board) {
 		
 		log.info("modify......" + board);
-		return mapper.update(board) == 1; /*Á¤»óÀûÀ¸·Î ¼öÁ¤ »èÁ¦°¡ ÀÌ·ç¾îÁö¸é 1ÀÌ¶ó´Â °ªÀÌ ¹İÈ¯ == ÀÌ¿ëÇÏ¿© true false Ã³¸®°¡´É*/
+		return mapper.update(board) == 1; /*ì •ìƒì ìœ¼ë¡œ ìˆ˜ì • ì‚­ì œê°€ ì´ë£¨ì–´ì§€ë©´ 1ì´ë¼ëŠ” ê°’ì´ ë°˜í™˜ == ì´ìš©í•˜ì—¬ true false ì²˜ë¦¬ê°€ëŠ¥*/
 	}
 
-	/*»èÁ¦ ³ª ¼öÁ¤Àº ¸Ş¼­µåÀÇ ¸®ÅÏÅ¸ÀÔÀ» void·Î ¼³°èÇÒ ¼öµµ ÀÖÁö¸¸ ¾ö°İÇÏ°Ô Ã³¸®ÇÏ±â À§ÇØ BooleanÅ¸ÀÔÀ¸·Î Ã³¸®*/
+	/*ì‚­ì œ ë‚˜ ìˆ˜ì •ì€ ë©”ì„œë“œì˜ ë¦¬í„´íƒ€ì…ì„ voidë¡œ ì„¤ê³„í•  ìˆ˜ë„ ìˆì§€ë§Œ ì—„ê²©í•˜ê²Œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ Booleaníƒ€ì…ìœ¼ë¡œ ì²˜ë¦¬*/
 	@Transactional
 	@Override
 	public boolean remove(Long id) {
@@ -74,7 +107,7 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(id) == 1;
 	}
 
-	@Override /*ÇöÀç Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç µ¥ÀÌÅÍ °¡Á®¿À´Â*/
+	@Override /*í˜„ì¬ í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  ë°ì´í„° ê°€ì ¸ì˜¤ëŠ”*/
 	public List<BoardVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
 		log.info("get list with criteria : " + cri);
@@ -93,9 +126,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardAttachVO> getAttachList(Long bno) {
 		// TODO Auto-generated method stub
 		
-		log.info("get Attach list by id" + bno);
+		log.info("get Attach list by id " + bno);
 		return attachMapper.findByBno(bno);
 	}
-	
 
 }
