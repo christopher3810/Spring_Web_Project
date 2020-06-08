@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(#{uploadPath},select *from (select max(id)+1 from board) next), <!--nextval오라클 시퀀스여서 
 			mysql식으로 autoincrease sql작업해줘야됨 -->
-		#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time},#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
+		#{title},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
 
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		board(id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
 		values
-		(#{id},#{title},#{content},#{attachments},#{price},#{likes},#{views},#{create_time},#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
+		(#{id},#{title},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
 	<select id="read" resultType="com.spring.test.domain.BoardVO">
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		price = #{price},
 		likes = #{likes},
 		views = #{views},
-		create_time = now(), <!-- -->
+		update_time = now(), <!-- -->
 		size220 = #{size220},
 		size230 = #{size230},
 		size240 = #{size240},
@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListWithPaging"
 		resultType="com.spring.test.domain.BoardVO">
 	<![CDATA[
-		select id, title, content, attachments, price , likes, views, create_time , replycnt
+		select id, title, content, attachments, price , likes, views, create_time , update_time ,replycnt
 		from board
 		where id > 0
 		]]>

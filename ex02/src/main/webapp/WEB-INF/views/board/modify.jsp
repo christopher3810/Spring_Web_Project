@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ÆĞÀÌÁö ¼öÁ¤</title>
+<title>íŒ¨ì´ì§€ ìˆ˜ì •</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -39,34 +39,34 @@
 				<li><a href="#">MEN</a>
 					<ul>
 
-						<li><a href="#">¿îµ¿È­</a>
+						<li><a href="#">ìš´ë™í™”</a>
 							<ul>
-								<li><a href="#">½º´ÏÄ¿Áî</a></li>
-								<li><a href="#">Äµ¹ö½ºÈ­</a></li>
+								<li><a href="#">ìŠ¤ë‹ˆì»¤ì¦ˆ</a></li>
+								<li><a href="#">ìº”ë²„ìŠ¤í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">½ºÆ÷Ã÷</a>
+						<li><a href="#">ìŠ¤í¬ì¸ </a>
 							<ul>
-								<li><a href="#">·±´×È­</a></li>
-								<li><a href="#">Ãà±¸È­</a></li>
+								<li><a href="#">ëŸ°ë‹í™”</a></li>
+								<li><a href="#">ì¶•êµ¬í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">±¸µÎ</a>
+						<li><a href="#">êµ¬ë‘</a>
 							<ul>
-								<li><a href="#">¿Á½ºÆ÷µå</a></li>
-								<li><a href="#">·ÎÆÛ</a></li>
+								<li><a href="#">ì˜¥ìŠ¤í¬ë“œ</a></li>
+								<li><a href="#">ë¡œí¼</a></li>
 							</ul></li>
 
-						<li><a href="#">»÷µé</a>
+						<li><a href="#">ìƒŒë“¤</a>
 							<ul>
-								<li><a href="#">¾ÆÄí¾Æ½´Áî</a></li>
-								<li><a href="#">½ºÆ®·¦»÷µé</a></li>
+								<li><a href="#">ì•„ì¿ ì•„ìŠˆì¦ˆ</a></li>
+								<li><a href="#">ìŠ¤íŠ¸ë©ìƒŒë“¤</a></li>
 							</ul></li>
 
-						<li><a href="#">ÀâÈ­</a>
+						<li><a href="#">ì¡í™”</a>
 							<ul>
-								<li><a href="#">°¡¹æ</a></li>
-								<li><a href="#">¸ğÀÚ</a></li>
+								<li><a href="#">ê°€ë°©</a></li>
+								<li><a href="#">ëª¨ì</a></li>
 							</ul></li>
 
 					</ul></li>
@@ -76,35 +76,35 @@
 				<li><a href="#">WOMEN</a>
 					<ul>
 
-						<li><a href="#">¿îµ¿È­</a>
+						<li><a href="#">ìš´ë™í™”</a>
 							<ul>
-								<li><a href="#">½º´ÏÄ¿Áî</a></li>
-								<li><a href="#">Äµ¹ö½ºÈ­</a></li>
+								<li><a href="#">ìŠ¤ë‹ˆì»¤ì¦ˆ</a></li>
+								<li><a href="#">ìº”ë²„ìŠ¤í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">½ºÆ÷Ã÷</a>
+						<li><a href="#">ìŠ¤í¬ì¸ </a>
 							<ul>
-								<li><a href="#">·±´×È­</a></li>
-								<li><a href="#">Ãà±¸È­</a></li>
+								<li><a href="#">ëŸ°ë‹í™”</a></li>
+								<li><a href="#">ì¶•êµ¬í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">±¸µÎ</a>
+						<li><a href="#">êµ¬ë‘</a>
 							<ul>
-								<li><a href="#">ÇÃ·§</a></li>
-								<li><a href="#">Èú</a></li>
-								<li><a href="#">·ÎÆÛ</a></li>
+								<li><a href="#">í”Œë«</a></li>
+								<li><a href="#">í</a></li>
+								<li><a href="#">ë¡œí¼</a></li>
 							</ul></li>
 
-						<li><a href="#">»÷µé</a>
+						<li><a href="#">ìƒŒë“¤</a>
 							<ul>
-								<li><a href="#">¾ÆÄí¾Æ½´Áî</a></li>
-								<li><a href="#">½ºÆ®·¦»÷µé</a></li>
+								<li><a href="#">ì•„ì¿ ì•„ìŠˆì¦ˆ</a></li>
+								<li><a href="#">ìŠ¤íŠ¸ë©ìƒŒë“¤</a></li>
 							</ul></li>
 
-						<li><a href="#">ÀâÈ­</a>
+						<li><a href="#">ì¡í™”</a>
 							<ul>
-								<li><a href="#">°¡¹æ</a></li>
-								<li><a href="#">¸ğÀÚ</a></li>
+								<li><a href="#">ê°€ë°©</a></li>
+								<li><a href="#">ëª¨ì</a></li>
 							</ul></li>
 
 					</ul></li>
@@ -112,55 +112,54 @@
 				<li><a href="#">KIDS</a>
 					<ul>
 
-						<li><a href="#">¿îµ¿È­</a>
+						<li><a href="#">ìš´ë™í™”</a>
 							<ul>
-								<li><a href="#">½º´ÏÄ¿Áî</a></li>
-								<li><a href="#">Äµ¹ö½ºÈ­</a></li>
+								<li><a href="#">ìŠ¤ë‹ˆì»¤ì¦ˆ</a></li>
+								<li><a href="#">ìº”ë²„ìŠ¤í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">½ºÆ÷Ã÷</a>
+						<li><a href="#">ìŠ¤í¬ì¸ </a>
 							<ul>
-								<li><a href="#">·±´×È­</a></li>
-								<li><a href="#">Ãà±¸È­</a></li>
+								<li><a href="#">ëŸ°ë‹í™”</a></li>
+								<li><a href="#">ì¶•êµ¬í™”</a></li>
 							</ul></li>
 
-						<li><a href="#">»÷µé</a>
+						<li><a href="#">ìƒŒë“¤</a>
 							<ul>
-								<li><a href="#">¾ÆÄí¾Æ½´Áî</a></li>
-								<li><a href="#">½ºÆ®·¦»÷µé</a></li>
+								<li><a href="#">ì•„ì¿ ì•„ìŠˆì¦ˆ</a></li>
+								<li><a href="#">ìŠ¤íŠ¸ë©ìƒŒë“¤</a></li>
 							</ul></li>
 
 					</ul></li>
 				<li><a href="#">EVENT</a></li>
-				<li><a href="#">±âÈ¹Àü</a></li>
+				<li><a href="#">ê¸°íšì „</a></li>
 			</ul>
 		</nav>
 	</header>
 	<!-- /header -->
-	<!-- º»¹® -->
-	<div id="example">
+		<div id="example">
 		<div id="add-product" class="demo-section k-content">
-			<p class="title">»õ·Î¿î »óÇ° µî·Ï</p>
-			<form id="ticketsForm" role="form" action="/board/modify" method="post">
-				<ul id="fieldlist">
-					<li><label for="fullname" class="required">°Ô½Ã¹° ¹øÈ£</label>
+			<p class="title">ìƒˆë¡œìš´ ìƒí’ˆ ë“±ë¡</p>
+			<form id="ticketsForm" role='form' action="/board/modify" method="post">
+				<ul id="fieldlist">			
+					<li><label for="fullname" class="required" style="width: 50%; height: 30px;">ê²Œì‹œë¬¼ ë²ˆí˜¸</label>
 					<input class="form-control" name="id" value="${board.id}" readonly="readonly"
 					style="width: 50%; height: 30px;"></li>
-					<li><label for="fullname" class="required">»óÇ°¸í</label> <input
+					<li><label for="fullname" class="required">ìƒí’ˆëª…</label> <input
 						type="text" id="title" name="title" class="k-textbox"
-						placeholder="»óÇ°¸í" required validationMessage="Enter {0}" value="${board.title}"
+						value="${board.title}" required validationMessage="Enter {0}"
 						style="width: 50%; height: 30px;" /></li>
-					<li><label>»óÇ°°¡°İ:</label> <input id="price" name='price' type="number"
+					<li><label>ìƒí’ˆê°€ê²©:</label> <input id="price" name='price' type="number"
 						title="currency" value="${board.price}" min="0" max="10000000"
 						style="width: 50%; height: 30px;" /></li>
-					<li><label for="tel" class="required">»óÇ°»ó¼¼Á¤º¸</label> <input
+					<li><label for="tel" class="required">ìƒí’ˆìƒì„¸ì •ë³´</label> <input
 						type="tel" id="tel" name="content" class="k-textbox" pattern="\d{10}"
 						placeholder="Enter a ten digit number" required
-						validationMessage="Enter at least ten digits" value ="${board.content}"
+						validationMessage="Enter at least ten digits" value="${board.content}"
 						style="width: 50%; height: 30px;" /></li>
 					<li>
 						<hr>
-						<h2>»óÇ° »çÀÌÁî ÀÔ·Â</h2>
+						<h2>ìƒí’ˆ ì‚¬ì´ì¦ˆ ì…ë ¥</h2>
 					</li>
 					<li id="size"><label for="tel" class="required"
 						style="width: 100%;"> 220</label>  <input class="form-control" type="number" value="${board.size220}" id="example-number-input" name ='size220'></li>
@@ -181,19 +180,41 @@
 						style="width: 100%;"> 290</label>  <input class="form-control" type="number" value="${board.size290}" id="example-number-input" name ='size290'></li>
 
 					<li class="confirm" style="width: 100%;">
-						<button class="k-button k-primary" type="submit" data-oper='modify'>¼öÁ¤¿Ï·á</button>
-						<button class="k-button k-primary" type="submit" data-oper='remove'>°Ô½Ã¹°»èÁ¦</button>
-						<button class="k-button k-primary" type="submit" data-oper='list'>¸®½ºÆ®·Îµ¹¾Æ°¡±â</button>
+						<button class="k-button k-primary" type="submit" data-oper='modify'>ìˆ˜ì •ì™„ë£Œ</button>
+						<button class="k-button k-primary" type="submit" data-oper='remove'>ê²Œì‹œë¬¼ì‚­ì œ</button>
+						<button class="k-button k-primary" type="submit" data-oper='list'>ë¦¬ìŠ¤íŠ¸ë¡œëŒì•„ê°€ê¸°</button>
 					</li>
-					<li class="status"></li>
+				<li class="status"></li>
 					<div class="card" style="width: 100%;">
 
-						<div class="card-header">»óÇ° ¼³¸í ÆÄÀÏ ÀÌ¹ÌÁö ¾÷·Îµå</div><!-- card header -->
+						<div class="card-header">ìƒí’ˆ ë©”ì¸ ì´ë¯¸ì§€</div><!-- card header -->
+						<!-- head of panel -->
+
+						<div class="card-body"><!--  -->
+							<div class="form-group uploadDiv">
+								<input type="file" name='mainuploadFile'>
+							</div>
+										
+							<div class='mainuploadResult'>
+								<ul>
+
+								</ul>
+							</div>
+
+						</div>
+						<!-- end card-body -->
+
+					</div>
+					<!-- end card -->
+					<br>
+					<div class="card" style="width: 100%;">
+
+						<div class="card-header">ìƒí’ˆ ì„¤ëª… íŒŒì¼ ì´ë¯¸ì§€ ì—…ë¡œë“œ</div><!-- card header -->
 						<!-- head of panel -->
 
 						<div class="card-body">
 							<div class="form-group uploadDiv">
-								<input type="file" name='uploadFile' multiple>
+								<input type="file" name='uploadFile' id="subupload" multiple>
 							</div>
 
 							<div class='uploadResult'>
@@ -207,9 +228,6 @@
 
 					</div>
 					<!-- end card -->
-					<!--<input class="form-control" name='update_time' value='<fmt:formatDate pattern = "yyyy/MM/dd" value ="${board.update_time}" />'
-					readonly = "readonly">-->
-					
 			</form>
 		</div>
 	</div>
@@ -310,6 +328,256 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 </style>
 <script type="text/javascript">	
 	$(document).ready(function(){
+		
+		$(function(){
+			
+			var bno = ${board.id};
+			
+			$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+				
+				console.log(arr);
+				
+				var str ="";
+				
+				$(arr).each(function(i, obj){
+
+					//img type
+					if(obj.maincheck){
+						str ="";
+						uploadUL = $(".mainuploadResult ul");
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+						
+						str += "<li data-path ='"+obj.uploadPath+"'";
+						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
+						str += "<div col-md-4 center-block>";
+						str += "<span> "+ obj.fileName + "</span>";
+						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+						"<span aria-hidden='true'>&times;</span></button><br>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str + "</li>";
+						uploadUL.append(str);	
+					}
+				 	else{
+				 		uploadUL = $(".uploadResult ul");
+				 		str ="";
+						if(obj.fileType){ //ì´ë¯¸ì§€ íŒŒì¼ ì•„ë‹Œê±¸ ì˜¬ë¦¬ì‹œ íŒŒì¼ ì—…ë¡œë“œ í•˜ëŠ” pngë¥¼ ë³´ì—¬ì¤Œ 
+							
+							var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+						
+							str += "<li data-path ='"+obj.uploadPath+"'";
+							str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
+							str += "<div col-md-4 center-block>";
+							str += "<span> "+ obj.fileName + "</span>";
+							str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+							"<span aria-hidden='true'>&times;</span></button><br>";
+							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "</div>";
+							str + "</li>";
+								
+						}else{
+							//str += "<li>" + obj.fileName + "</li>"; ì—…ë¡œë“œíŒŒì¼ëª…
+							var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
+							var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+							//var originPath = obj.uploadPath + "\\" + obj.uuid +"_"+obj.fileName;
+							
+							//originPath = originPath.replace(new RegExp(/\\/g),"/");
+							//ìƒì„±ëœ ë¬¸ìì—´ì€ '\' ê¸°í˜¸ ë•Œë¬¸ì— ì¼ë°˜ ë¬¸ìì—´ê³¼ ë‹¤ë¥´ê²Œ ë¨ìœ¼ë¡œ replace RegExpë¥¼ í™œìš© /ë¡œ ë³€í™˜í•´ì„œ í•´ì¤˜ì•¼ ì˜¬ë°”ë¥¸ ì´ë¯¸ì§€ ê²½ë¡œê°€ëœë‹¤ !!!
+						
+							str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
+							str += "data-type ='"+obj.image+"' ><div>";
+							str += "<span> "+ obj.fileName+"</span>";
+							str += "<button type='button' cclass='close' aria-label='Close' data-file=\'"+fileCallPath+"\' data-type='file'>"+
+							"<span aria-hidden='true'>&times;</span></button><br>";
+							str += "<img src='/resources/images/attach.png'>";
+							str += "</div>";
+							str + "</li>";
+						}; //else
+						uploadUL.append(str);
+				 	}
+				});
+				
+			});
+			
+			
+		});
+		$(".mainuploadResult").on("click", "button", function(e){
+			
+			console.log("delete file");
+			
+			if(confirm("Remove this file?")){
+				
+				var targetLi = $(this).closest("li");
+				targetLi.remove();
+				
+			}
+			
+		})
+		$(".uploadResult").on("click", "button", function(e){
+			
+			console.log("delete file");
+			
+			if(confirm("Remove this file?")){
+				
+				var targetLi = $(this).closest("li");
+				targetLi.remove();
+				
+			}
+			
+		})
+		
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 5242880; //5MB
+
+		function checkExtension(fileName, fileSize) {
+
+			if (fileSize >= maxSize) {
+				alert("íŒŒì¼ ì‚¬ì´ì¦ˆë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤");
+				return false;
+			}
+
+			if (regex.test(fileName)) {
+				alert("í•´ë‹¹ ì¢…ë¥˜ì˜ íŒŒì¼ì€ ì—…ë¡œë“œ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+				return false;
+			}
+			return true;
+		}//check extention
+		
+		//input[type='file']		
+			$("input[name='uploadFile']").change(function(e){
+				
+				var formData = new FormData();
+				formData.append("uploadFile", "checkid");
+				
+				var inputFile = $("input[name='uploadFile']");
+
+				var files = inputFile[0].files;
+
+				
+				for (var i = 0; i < files.length; i++) {
+
+					if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+					}
+					
+					formData.append("uploadFile", files[i]);
+					console.log(files[i]);
+				}
+				
+				$.ajax({
+					url : '/uploadAjaxAction',
+					processData : false,
+					contentType : false,
+					data : formData,
+					type : 'POST',
+					dataType: 'json',
+					success : function(result) {
+						console.log(result);
+						showUploadResult(result); //ì—…ë¡œë“œ ê²°ê³¼ ì²˜ë¦¬ í•¨ìˆ˜ ì²¨ë¶€íŒŒì¼ë³´ì—¬ì¤˜ì„¸ìš©
+					}	
+
+				}); //$.ajax
+			})
+			$("input[name='mainuploadFile']").change(function(e){
+				var formData = new FormData();
+				
+				formData.append("uploadFile", "checkid");
+				
+				var inputFile = $("input[name='mainuploadFile']");
+				
+				var aJsonArray = new Array();
+				var aJson = new Object();
+				aJson.maincheck = "1";
+				aJsonArray.push(aJson);
+				console.log(aJsonArray);
+				var files = inputFile[0].files;
+				console.log(files);			   
+				//íŒŒì¼ ê°¯ìˆ˜ì™€ ê°¯ìˆ˜ë³„ ë°ì´í„° ì „ì†¡
+				if (!checkExtension(files[0].name, files[0].size)) {
+					return false;
+				}
+				formData.append("uploadFile", files[0]);
+				formData.append("parseCheck", true);
+				console.log(formData);
+				//formData.append("uploadFile", {maincheck : true});
+				
+				$.ajax({
+					url : '/uploadAjaxAction',
+					processData : false,
+					contentType : false,
+					data : formData,
+					type : 'POST',
+					dataType: 'json',
+					success : function(result) {
+					showUploadResult(result);
+					}	
+
+				}); //$.ajax
+			});
+			
+		
+		function showUploadResult(uploadResultArr){
+			
+			if(!uploadResultArr || uploadResultArr.length == 0){return;}
+			
+			var uploadUL = "";
+			var str = "";
+			
+			$(uploadResultArr).each(function(i, obj){
+
+				//img type
+				if(obj.maincheck){
+					uploadUL = $(".mainuploadResult ul");
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+					
+					str += "<li data-path ='"+obj.uploadPath+"'";
+					str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
+					str += "<div col-md-4 center-block>";
+					str += "<span> "+ obj.fileName + "</span>";
+					str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+					"<span aria-hidden='true'>&times;</span></button><br>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str + "</li>";
+				}
+			 	else{
+			 		uploadUL = $(".uploadResult ul");
+					if(obj.image){ //ì´ë¯¸ì§€ íŒŒì¼ ì•„ë‹Œê±¸ ì˜¬ë¦¬ì‹œ íŒŒì¼ ì—…ë¡œë“œ í•˜ëŠ” pngë¥¼ ë³´ì—¬ì¤Œ 
+						
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+					
+						str += "<li data-path ='"+obj.uploadPath+"'";
+						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
+						str += "<div col-md-4 center-block>";
+						str += "<span> "+ obj.fileName + "</span>";
+						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+						"<span aria-hidden='true'>&times;</span></button><br>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str + "</li>";
+							
+					}else{
+						//str += "<li>" + obj.fileName + "</li>"; ì—…ë¡œë“œíŒŒì¼ëª…
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
+						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+						//var originPath = obj.uploadPath + "\\" + obj.uuid +"_"+obj.fileName;
+						
+						//originPath = originPath.replace(new RegExp(/\\/g),"/");
+						//ìƒì„±ëœ ë¬¸ìì—´ì€ '\' ê¸°í˜¸ ë•Œë¬¸ì— ì¼ë°˜ ë¬¸ìì—´ê³¼ ë‹¤ë¥´ê²Œ ë¨ìœ¼ë¡œ replace RegExpë¥¼ í™œìš© /ë¡œ ë³€í™˜í•´ì„œ í•´ì¤˜ì•¼ ì˜¬ë°”ë¥¸ ì´ë¯¸ì§€ ê²½ë¡œê°€ëœë‹¤ !!!
+					
+						str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
+						str += "data-type ='"+obj.image+"' ><div>";
+						str += "<span> "+ obj.fileName+"</span>";
+						str += "<button type='button' cclass='close' aria-label='Close' data-file=\'"+fileCallPath+"\' data-type='file'>"+
+						"<span aria-hidden='true'>&times;</span></button><br>";
+						str += "<img src='/resources/images/attach.png'>";
+						str += "</div>";
+						str + "</li>";
+					}; //else
+			 	}
+			}); //uploadResultArr
+			uploadUL.append(str);		
+		}; //show upload result
 		var formObj = $("form");
 		
 		$('button').on("click", function(e){
@@ -326,6 +594,38 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				
 				self.location = "/board/list";
 				return;
+			}else if(operation == 'modify'){
+				
+				console.log("submit clicked");
+				
+				var str = "";
+				
+				$(".mainuploadResult ul li").each(function(i,obj){
+					i = 0;
+					var jobj = $(obj);
+					
+					console.dir(jobj);
+					
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].maincheck' value='"+true+"'>";
+				});
+
+				$(".uploadResult ul li").each(function(i,obj){
+					i = i+1;
+					var jobj = $(obj);
+					
+					console.dir(jobj);
+					
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+					str += "<input type = 'hidden' name ='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
+					
+				});
+				formObj.append(str).submit();
 			}
 			formObj.submit();
 		});

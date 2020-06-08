@@ -159,8 +159,16 @@
 								<div class="p-name" align="right">${board.title }</div>
 								<div class="p-price" align="right">${board.price }원</div>
 								<div class="p-desc" align="right">
-									<fmt:formatDate value="${board.create_time }"
+								<c:choose>
+									<c:when test="${!empty board.update_time}">
+    									<font color="red">업데이트</font> : <fmt:formatDate value="${board.update_time }"
 										pattern="yyyy-MM-dd" />
+									</c:when>
+									<c:when test="${empty board.update_time}">
+										생성일자 : <fmt:formatDate value="${board.create_time }"
+											pattern="yyyy-MM-dd" />
+									</c:when>
+								</c:choose>
 								</div>
 								<div class="p-desc" align="right">좋아요 : ${board.likes} & 댓글 <b>[<c:out value="${board.replyCnt}" />]</b></div>
 								<button class="p-add" align="right">Add to Cart</button>
@@ -242,6 +250,7 @@
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
 			var fileCallPath = encodeURIComponent (attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName);
 			"<img id = 'productimg' src='/display?fileName="+fileCallPath+"'>"
 					

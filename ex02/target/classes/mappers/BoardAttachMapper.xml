@@ -20,4 +20,10 @@
 		select * from attach where bno = #{bno}
 	</select>
 
+	<select id="getOldFiles" resultType="com.spring.test.domain.BoardAttachVO">
+			
+			select * from attach where uploadpath = DATE_FORMAT(date_sub(now(),interval 1 day), '%Y\%m\%d')
+
+	</select>
+
 </mapper>

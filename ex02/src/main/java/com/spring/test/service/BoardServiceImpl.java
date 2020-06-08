@@ -88,11 +88,38 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.read(id);
 	}
 
+	@Transactional
 	@Override
 	public boolean modify(BoardVO board) {
 		
 		log.info("modify......" + board);
-		return mapper.update(board) == 1; /*정상적으로 수정 삭제가 이루어지면 1이라는 값이 반환 == 이용하여 true false 처리가능*/
+		//전부삭제 기존
+		attachMapper.deleteAll(board.getId());
+		//mapper.update(board) == 1; /*정상적으로 수정 삭제가 이루어지면 1이라는 값이 반환 == 이용하여 true false 처리가능*/
+		
+		boolean modifyResult = mapper.update(board) == 1;
+
+		//기존에 첨부파일 관련 데이터를 전부 삭제한 후에 다시 첨부파일 데이터를 추가하는 방식으로 동작합니다 
+		if(modifyResult && board.getAttachList() != null & board.getAttachList().size() > 0) {		
+			board.getAttachList().forEach(attach ->{
+				if(attach.isMaincheck())
+				{
+					String temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
+					temp = encodeURIComponent(temp);
+					board.setAttachments(temp);
+				}
+				//메인 이미지 파일 경로 
+			});
+			board.getAttachList().forEach(attach ->{
+				//새로 첨부된 변경된 파일들 id값 주고 insert 진행 
+				attach.setBno(board.getId());
+				attachMapper.insert(attach);
+				
+			});
+			
+		}
+	    modifyResult = mapper.update(board) == 1;
+		return modifyResult;
 	}
 
 	/*삭제 나 수정은 메서드의 리턴타입을 void로 설계할 수도 있지만 엄격하게 처리하기 위해 Boolean타입으로 처리*/
