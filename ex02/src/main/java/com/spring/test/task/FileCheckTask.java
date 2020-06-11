@@ -41,7 +41,7 @@ public class FileCheckTask {
 	}
 	
 	//cron 속성 부여해서 주기 제어
-	@Scheduled(cron="0 * * * * *")
+	@Scheduled(cron="0 0 2 * * *")
 	public void checkFiles()throws Exception{
 		
 		log.warn("File Check Task 동작중 .................................");
