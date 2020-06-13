@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</collection>
 	</resultMap>
 	
-	<resultMap type="com.spring.domain.AuthVO" id="authMap">
+	<resultMap type="com.spring.test.domain.AuthVO" id="authMap">
 		<result property="userid" column="userid"/>
 		<result property="auth" column="auth" />
 	</resultMap>

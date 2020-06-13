@@ -12,6 +12,8 @@
 <bean id="customLoginSuccess" class="com.spring.test.security.CustomLoginSuccessHandler"></bean>
 <!-- <bean id="customPasswordEncoder" class="com.spring.test.security.CustomNoOpPasswordEncoder"></bean> -->
 <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+<bean id="customUserDetailsService" class="com.spring.test.security.CustomUserDetailsService" />												
+												
 															  
 	<security:http auto-config="true" use-expressions="true">
 		<!-- 표현식을 사용하지 않고 권한명을 의미하는 문자열을 사용하는법 -->
@@ -42,7 +44,7 @@
 		
 		<security:authentication-manager>
 		
-			<security:authentication-provider>
+			<security:authentication-provider user-service-ref="customUserDetailsService">
 			
 				<!--  <security:user-service> -->		
 					<!-- <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />	 -->					
@@ -53,9 +55,10 @@
 				<!--  </security:user-service>-->
 				
 				
-				<security:jdbc-user-service data-source-ref="dataSource"
+				<!--  <security:jdbc-user-service data-source-ref="dataSource"
 					users-by-username-query="select userid, userpw, enabled from member where userid = ? "
 					authorities-by-username-query="select userid, auth from member_auth where userid = ? " />
+					-->
 				<!--<security:password-encoder ref="customPasswordEncoder" />-->
 				<security:password-encoder ref="bcryptPasswordEncoder" />
 				
