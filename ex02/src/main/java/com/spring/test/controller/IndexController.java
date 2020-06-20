@@ -33,7 +33,7 @@ public class IndexController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "redirect:/board/list";
 	}
 	
 }

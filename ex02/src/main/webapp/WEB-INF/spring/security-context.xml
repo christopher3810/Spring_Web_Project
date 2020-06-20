@@ -9,7 +9,7 @@
 <!-- namespace security check 네임스페이스에 추가된 버전이 5.0xml네임스페이스 -->
 
 <bean id="customAccessDenied" class="com.spring.test.security.CustomAccessDeniedHandler"></bean>
-<bean id="customLoginSuccess" class="com.spring.test.security.CustomLoginSuccessHandler"></bean>
+<!-- <bean id="customLoginSuccess" class="com.spring.test.security.CustomLoginSuccessHandler"></bean> -->
 <!-- <bean id="customPasswordEncoder" class="com.spring.test.security.CustomNoOpPasswordEncoder"></bean> -->
 <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 <bean id="customUserDetailsService" class="com.spring.test.security.CustomUserDetailsService" />												
@@ -34,9 +34,13 @@
 		<!-- org.springframework.security.web.access.AccessDeniedHandler 인터페이스의 구현체를 지정하거나 error-page를 지정할수 있습니다 -->
 		
 		<!-- handler  -->
-		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
+		<security:form-login login-page="/customLogin" />
 		<!-- logout -->
 		<security:logout logout-url="/customLogout" invalidate-session="true"/>
+		<!-- 자동로그인 -->
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
+		
+		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
 		
 		</security:http>
 		

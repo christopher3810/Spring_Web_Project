@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,6 +145,9 @@
 			<p class="title">새로운 상품 등록</p>
 			<form id="ticketsForm" role='form' action="/board/register" method="post">
 				<ul id="fieldlist">
+					<li><label>작성자:</label> <input type="text" class="k-textbox"
+						style="width: 50%; height: 30px;" value='<sec:authentication property="principal.username"/>'
+						readonly="redonly" /></li>
 					<li><label for="fullname" class="required">상품명</label> <input
 						type="text" id="title" name="title" class="k-textbox"
 						placeholder="상품명" required validationMessage="Enter {0}"
