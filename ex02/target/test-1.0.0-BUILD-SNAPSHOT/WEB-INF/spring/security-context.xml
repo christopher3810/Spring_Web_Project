@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- namespace security check 네임스페이스에 추가된 버전이 5.0xml네임스페이스 -->
+
+<bean id="customAccessDenied" class="com.spring.test.security.CustomAccessDeniedHandler"></bean>
+<!-- <bean id="customLoginSuccess" class="com.spring.test.security.CustomLoginSuccessHandler"></bean> -->
+<!-- <bean id="customPasswordEncoder" class="com.spring.test.security.CustomNoOpPasswordEncoder"></bean> -->
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+<bean id="customUserDetailsService" class="com.spring.test.security.CustomUserDetailsService" />												
+												
+															  
+	<security:http auto-config="true" use-expressions="true">
+		<!-- 표현식을 사용하지 않고 권한명을 의미하는 문자열을 사용하는법 -->
+		<!-- <security:http auto-config="true" use-expressions="false" 를 지정 -->
+		<!-- <security:intercept-url pattern="/sample/userPage" access="ROLE_MEMBER"/>와같이 가능 -->
+		
+					<!-- 특정한 URI에 접근시 인터셉터를 이용 접근 제한설정 -->
+					<!-- security:intercept-url는  pattern(URI패턴)이라는 속성과 access(권한체크)라는 속성을 지정해야만 합니다  -->
+		<security:intercept-url pattern="/sample/all" access="permitAll" />
+					<!-- access의 속성값으로 사용되는 문자열은 1.표현식 / 2.권한명 의미하는 문자열 이용 할 수 있습니다.-->
+		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" /><!-- ROLE_MEMBER라는권한이 있어야 접근가능 -->
+		
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
+		
+		<security:access-denied-handler ref="customAccessDenied" />
+		<!--  <security:access-denied-handler error-page="/accessError" /> error-page/ref 둘중 하나만 사용
+		-->
+		<!-- org.springframework.security.web.access.AccessDeniedHandler 인터페이스의 구현체를 지정하거나 error-page를 지정할수 있습니다 -->
+		
+		<!-- handler  -->
+		<security:form-login login-page="/customLogin" />
+		<!-- logout -->
+		<security:logout logout-url="/customLogout" invalidate-session="true"/>
+		<!-- 자동로그인 -->
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
+		
+		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
+		
+		</security:http>
+		
+		<!-- 스프링 시큐리티가 동작하기 위해선 authentication manager라는 존재와 스프링 시큐리티의 시작지점이 필요하기 때문에 최소한의 설정을 지정한후 실행 -->
+		
+		<security:authentication-manager>
+		
+			<security:authentication-provider user-service-ref="customUserDetailsService">
+			
+				<!--  <security:user-service> -->		
+					<!-- <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />	 -->					
+					<!-- <security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN" />  -->
+
+					<!-- 복수 권한 -->	
+				 <!-- passwordencoding 없이 사용하고 싶으면 noop앞에 붙여주세요  -->
+				<!--  </security:user-service>-->
+				
+				
+				<!--  <security:jdbc-user-service data-source-ref="dataSource"
+					users-by-username-query="select userid, userpw, enabled from member where userid = ? "
+					authorities-by-username-query="select userid, auth from member_auth where userid = ? " />
+					-->
+				<!--<security:password-encoder ref="customPasswordEncoder" />-->
+				<security:password-encoder ref="bcryptPasswordEncoder" />
+				
+			</security:authentication-provider>
+		</security:authentication-manager>
+		<!-- <context:component-scan base-package="com.spring.test.security"></context:component-scan>-->
+</beans>

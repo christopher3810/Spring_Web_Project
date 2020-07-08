@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -83,6 +84,7 @@ public class UploadController {
 	}
 	
 	// AJAX 결과 데이터 전달 하면서 리턴 타입이 달라지도록함 파라미터에서는 Ajax 방식 이용하기 때문에 Model을 사용할 일이 없으므로 사용하지 않음 /attachFileDTO의리스트를 반환하는 구조로
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<AttachFileDTO>>uploadAjaxPost(MultipartFile[] uploadFile ,boolean parseCheck) {
@@ -244,6 +246,7 @@ public class UploadController {
 			}
 			return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}//downloadFile
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){

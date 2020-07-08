@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.test.mapper.ReplyMapper">
+	
+	<insert id="insert">
+	
+		insert into reply (bno, reply, replyer)
+		values
+		(#{bno} ,#{reply} ,#{replyer})
+			<!-- query에 autoincrese 주고 자체적으로 증가시킴  -->
+	</insert>
+	
+	<select id="read" resultType="com.spring.test.domain.ReplyVO">
+		select * from reply where rno = #{rno};
+	
+	</select>
+	
+	<delete id="delete">
+		delete from reply where rno = #{rno};
+	</delete>
+	
+	<update id="update">
+		update reply set reply = #{reply}, updatedate = now() where rno = #{rno}
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.spring.test.domain.ReplyVO">	
+	<![CDATA[
+		SELECT rno, bno, reply, replyer, replyDate, updatedate
+		from reply
+		where bno = #{bno}
+		order by rno asc
+		LIMIT #{cri.pageStart}, #{cri.amount};
+		
+		]]>
+		<!-- mysql limit 사용시 critera 에서 pagestart를 이미 정의해두었기 때문에  가져다쓰면됨 -->
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+	<![CDATA[
+	select count(rno) from reply where bno = #{bno}
+	]]>
+	</select>
+	
+</mapper>

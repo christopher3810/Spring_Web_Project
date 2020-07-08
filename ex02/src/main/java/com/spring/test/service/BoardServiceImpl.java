@@ -66,7 +66,7 @@ public class BoardServiceImpl implements BoardService {
 			if(attach.isMaincheck())
 			{
 				String temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
-				temp = encodeURIComponent(temp);
+				//temp = encodeURIComponent(temp);
 				board.setAttachments(temp);
 			}
 		});
@@ -105,7 +105,7 @@ public class BoardServiceImpl implements BoardService {
 				if(attach.isMaincheck())
 				{
 					String temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
-					temp = encodeURIComponent(temp);
+					//temp = encodeURIComponent(temp);
 					board.setAttachments(temp);
 				}
 				//메인 이미지 파일 경로 

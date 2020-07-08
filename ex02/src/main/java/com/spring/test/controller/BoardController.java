@@ -130,21 +130,22 @@ public class BoardController {
 		model.addAttribute("board", service.get(id));
 
 	}
-
+	
+	//@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes rttr) {
+	public String modify(BoardVO board,Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + board);
 
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 	}
-
+	
+	//@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
 	public String remove(@RequestParam("id") Long id, Criteria cri, RedirectAttributes rttr) {
 		log.info("remove...." + id);
-		
 		List<BoardAttachVO> attachList = service.getAttachList(id);
 		
 		if (service.remove(id)) {
@@ -225,7 +226,8 @@ public class BoardController {
 		return result;
 	}
 	*/
-	@RequestMapping(value = "/display", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", method = RequestMethod.GET)
+	@RequestMapping(value = "/display", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", 
+			method = RequestMethod.GET)
 	public @ResponseBody BufferedImage getImage(String fileName) {
 	       try {
 	    	   

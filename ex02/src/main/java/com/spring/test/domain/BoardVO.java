@@ -10,6 +10,7 @@ public class BoardVO {
 	
 	private Long id;
 	private String title;
+	private String writer;
 	private String content;
 	private String attachments;
 	private int price;
@@ -26,6 +27,7 @@ public class BoardVO {
 	private int size280;
 	private int size290;
 	private int replyCnt;
+	
 	
 	private List<BoardAttachVO> attachList; //등록시 한번에 BoardAttachVO처리 할수 있도록 List로 추가 
 	//첨부파일 정보 수집  filename/uuid/uploadPath/fileType

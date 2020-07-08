@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insert">
 		insert into board
-		(attachments, id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
+		(attachments, id,title,writer,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
 		values
 		(#{uploadPath},select *from (select max(id)+1 from board) next), <!--nextval오라클 시퀀스여서 
 			mysql식으로 autoincrease sql작업해줘야됨 -->
-		#{title},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
+		#{title},#{writer},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
 
@@ -23,9 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select MAX(id)+1 from board <!-- sql문을 바뀌줘야됨 -->
 		</selectKey>
 		insert into
-		board(id,title,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
+		board(id,title,writer,content,attachments,price,likes,views,create_time,size220,size230,size240,size250,size260,size270,size280,size290)
 		values
-		(#{id},#{title},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
+		(#{id},#{title},#{writer},#{content},#{attachments},#{price},#{likes},#{views},now(),#{size220},#{size230},#{size240},#{size250},#{size260},#{size270},#{size280},#{size290})
 	</insert>
 
 	<select id="read" resultType="com.spring.test.domain.BoardVO">
