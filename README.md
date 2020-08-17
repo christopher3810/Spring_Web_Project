@@ -10,6 +10,10 @@ UI : Bootstrap / kendo ui
 
 Was :  Tomcat v9.0
 
+배포 : aws ec2 + aws s3 + aws rds
+
+
+
 
 - spring framework 를 통해 신발 쇼핑몰을 제작중입니다
 - 현재 적용기능
@@ -20,7 +24,8 @@ Was :  Tomcat v9.0
 - 파일 삭제시 해당 경로에 있는 이미지/파일 삭제됨
 - 파일 수정시 첨부된 파일 섬네일 이미지 / 이미지 첨부 수정으로 메인화면 메인 이미지 변경 및 상품 설명 이미지 수정가능
 - quartz 기능으로 매일 특정 시간에 급종료등 변수상황으로 원치않게 이미지혹은 다른 파일 서버에 올라가 있는 상태일경우 디렉토리 추적후 삭제하는 과정 자동으로거침 
+- awsEC2 + aws s3+ aws RDS를 활용한 배포
 
 
-- 진행중인 기능(custom UserDetailsService이용 Mybatis Mapper와 서비스작성중/ sns 로그인) 
-- 차후 진행할 기능(AWS EC2 서버배포)
+- 진행중인 기능(기존 이미지 저장소를 aws s3서버로 이동후 s3와 lambda를 이용한 이벤트처리후 이미지리사이징) 
+- 차후 진행할 기능(소셜로그인)
