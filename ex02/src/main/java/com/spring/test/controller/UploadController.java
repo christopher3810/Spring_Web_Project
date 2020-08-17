@@ -1,8 +1,10 @@
 package com.spring.test.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -14,8 +16,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +35,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,7 +59,7 @@ public class UploadController {
 	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
 		
 		String uploadFolder = "D:\\web_upload"; //위치
-		
+		//D:\\web_upload"
 		for(MultipartFile multipartFile : uploadFile) {
 			
 			log.info("-----------------------------------------");
@@ -88,10 +98,14 @@ public class UploadController {
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<AttachFileDTO>>uploadAjaxPost(MultipartFile[] uploadFile ,boolean parseCheck) {
+		    /////////////////////////////////
 			log.info("test" + uploadFile);
-			List<AttachFileDTO> list = new ArrayList<>();
+			/////////////////////////////////
+			
+			
+			List<AttachFileDTO> list = new  ArrayList<>();
 			String uploadFolder = "D:\\web_upload";
-		
+			//String uploadFolder = "D:/boardtest/ex02/src/main/webapp/resources/images";
 			String uploadFolderPath = getFolder();
 			
 			//폴더 만듣기
@@ -163,15 +177,19 @@ public class UploadController {
 		return false;
 	}
 	//썸네일은 서버통해 특정 URI호출시 보여주는데 파일경로/UUID가붙은 이름 필요 특정한 URI+파일이름 이미지 파일 데이터 가져와 img 태그 작성하는 과정 통해 처리 
-		// 서버 전송 데이터 = '파일의 경로' + 's_'+'uuid가붙은 파일 이름' 주의 해야하는 항목은 경로나 파일 이름에 한글 / 공백 문자가 들어가면 문제 발생 -> js의 encodeURIComponet()함수 이용 uri문제 없는 문자열 생성 처리 
+	// 서버 전송 데이터 = '파일의 경로' + 's_'+'uuid가붙은 파일 이름' 주의 해야하는 항목은 경로나 파일 이름에 한글 / 공백 문자가 들어가면 문제 발생 -> js의 encodeURIComponet()함수 이용 uri문제 없는 문자열 생성 처리 
+	//uploadthumnail display
+	  /*
 	@GetMapping("/display")
 		@ResponseBody
 		public ResponseEntity<byte[]> getFile(String fileName){
 			//문자열로 파일 경로가 포함된 fileName 파라미터로 받고  byte[]를 전송 브라우저에 보내주는 MIME타입이 파일 종류에 따라 달라짐 
 			log.info("fileName: " + fileName);
-			
-			File file = new File("D:\\web_upload\\" + fileName);
-			
+			final DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+			Resource resource = defaultResourceLoader.getResource("file:resources/images/");
+			//File file = new File("D:\\web_upload\\"+fileName);
+			File file = new File(resource + fileName);
+			       
 			log.info("file: " + file);
 			
 			ResponseEntity<byte[]>result = null;
@@ -187,6 +205,28 @@ public class UploadController {
 				e.printStackTrace();
 			}
 			return result;
+		}
+        */
+		@Autowired
+		ServletContext servletContext;
+		@RequestMapping(value = "/display", method = RequestMethod.GET)
+		public ResponseEntity<byte[]> getImageAsResponseEntity(String fileName) throws IOException {
+		  //final DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+		   // Resource resource = defaultResourceLoader.getResource("classpath:resources/images/"+fileName);
+			log.info("display컨트롤러로 넘어온 파일 명 "+fileName);
+			
+			
+			HttpHeaders headers = new HttpHeaders();
+			String imagePath = servletContext.getRealPath("img/"+fileName); 	
+			//ClassLoader classLoader = getClass().getClassLoader();
+			//File file = new File(classLoader.getResource("jsonschema.json").getFile());
+		    InputStream imageStream = new FileInputStream(imagePath);
+		    byte[] media = IOUtils.toByteArray(imageStream);
+
+		    headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		    
+		    ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+		    return responseEntity;
 		}
 		//OCTET_STREAM - 다른 모든 경우를 위한 기본값 알려지지 않은 파일 타입은 이걸 사용해야됩니다 
 				//첨부파일 다운로드 

@@ -393,25 +393,21 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				$("input[name='uploadFile']").change(function(e){
 					
 					var formData = new FormData();
-					formData.append("uploadFile", "checkid");
-					
+					formData.append("uploadFile", "checkid");					
 					var inputFile = $("input[name='uploadFile']");
-
 					var files = inputFile[0].files;
-
-					
+	
 					for (var i = 0; i < files.length; i++) {
 
 						if (!checkExtension(files[i].name, files[i].size)) {
 							return false;
-						}
-						
+						}			
 						formData.append("uploadFile", files[i]);
 						console.log(files[i]);
 					}
 					
 					$.ajax({
-						url : '/uploadAjaxAction',
+						url : '/s3image',
 						processData : false,
 						contentType : false,
 						beforeSend: function(xhr){
@@ -419,7 +415,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						},
 						data : formData,
 						type : 'POST',
-						dataType: 'json',
+						dataType: 'text',
 						success : function(result) {
 							console.log(result);
 							showUploadResult(result); //업로드 결과 처리 함수 첨부파일보여줘세용
@@ -451,7 +447,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 					//formData.append("uploadFile", {maincheck : true});
 					
 					$.ajax({
-						url : '/uploadAjaxAction',
+						url : '/s3image',
 						processData : false,
 						contentType : false,
 						beforeSend: function(xhr){
@@ -459,7 +455,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						},
 						data : formData,
 						type : 'POST',
-						dataType: 'json',
+						dataType: 'text',
 						success : function(result) {
 						showUploadResult(result);
 						}	
@@ -480,37 +476,43 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 					//img type
 					if(obj.maincheck){
 						uploadUL = $(".mainuploadResult ul");
-						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
-						
+						var imageRealPath = obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName;
+						//var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
 						str += "<li data-path ='"+obj.uploadPath+"'";
 						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 						str += "<div col-md-4 center-block>";
 						str += "<span> "+ obj.fileName + "</span>";
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
 						"<span aria-hidden='true'>&times;</span></button><br>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						//str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "<img src='/displayFile?fileName="+fileCallPath+"&directory=images>";
+						//str += "<img src=/img/"+imageRealPath+">";
+						
 						str += "</div>";
 						str + "</li>";
 					}
 				 	else{
 				 		uploadUL = $(".uploadResult ul");
 						if(obj.image){ //이미지 파일 아닌걸 올리시 파일 업로드 하는 png를 보여줌 
-							
-							var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
-						
+							var imageRealPath = obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName;
+							//var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
+							/*encodeURIComponent*/
 							str += "<li data-path ='"+obj.uploadPath+"'";
 							str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 							str += "<div col-md-4 center-block>";
 							str += "<span> "+ obj.fileName + "</span>";
 							str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
 							"<span aria-hidden='true'>&times;</span></button><br>";
-							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							//str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "<img src='/displayFile?fileName="+fileCallPath+"&directory=images>"
+							//str += "<img src=/img/"+imageRealPath+">";
 							str += "</div>";
 							str + "</li>";
 								
 						}else{
 							//str += "<li>" + obj.fileName + "</li>"; 업로드파일명
-							var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
+							var fileCallPath = obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName;
+							/*encodeURIComponent*/
 							var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 							//var originPath = obj.uploadPath + "\\" + obj.uuid +"_"+obj.fileName;
 							
@@ -605,6 +607,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 			});
 
 		});
+
 	</script>
 
 </body>

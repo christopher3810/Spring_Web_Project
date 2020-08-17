@@ -561,7 +561,7 @@
 				var str ="";				
 				$(arr).each(function(i, attach){
 					if(attach.maincheck == true){
-						var fileCallPath = encodeURIComponent (attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName);
+						var fileCallPath = attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName;
 						
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
 						"data-type='"+attach.fileType+"' id = 'imgli'><div>";

@@ -153,7 +153,7 @@
 										<ul>
 										</ul>
 									</div>
-									<img class="p-img" align="center" src='/display?fileName=${board.attachments}'>
+									<img class="p-img" align="center" src='${pageContext.request.contextPath}/resources/images/${board.attachments}'>	
 								</a>
 								
 								<div class="p-name" align="right">${board.title }</div>
