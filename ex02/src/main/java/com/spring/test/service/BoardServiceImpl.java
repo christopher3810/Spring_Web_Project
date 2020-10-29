@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.test.domain.BoardAttachVO;
 import com.spring.test.domain.BoardVO;
 import com.spring.test.domain.Criteria;
+import com.spring.test.domain.EventVO;
 import com.spring.test.mapper.BoardAttachMapper;
 import com.spring.test.mapper.BoardMapper;
 
@@ -62,18 +63,19 @@ public class BoardServiceImpl implements BoardService {
 			return;
 		}
 		board.getAttachList().forEach(attach ->{
-			//메인 이미지 파일 경로 
-			if(attach.isMaincheck())
-			{
+			//이미지 파일 경로 
+			if(attach.isMaincheck()) {
 				String temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
 				//temp = encodeURIComponent(temp);
-				board.setAttachments(temp);
+				board.setAttachments(temp);		
 			}
 		});
+		//Board 테이블에 들어가는 값
 		mapper.insertSelectKey(board);
 		board.getAttachList().forEach(attach ->{
 			//(CONCAT(#{uploadpath},'/s_' ,#{uuid},'_',#{fileName});
 			attach.setBno(board.getId());
+			//attach 테이블에 들어가는 값
 			attachMapper.insert(attach);
 			
 		});
@@ -92,7 +94,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean modify(BoardVO board) {
 		
-		log.info("modify......" + board);
+		log.info("serviceimpl modify param check : " + board);
 		//전부삭제 기존
 		attachMapper.deleteAll(board.getId());
 		//mapper.update(board) == 1; /*정상적으로 수정 삭제가 이루어지면 1이라는 값이 반환 == 이용하여 true false 처리가능*/
@@ -156,5 +158,43 @@ public class BoardServiceImpl implements BoardService {
 		log.info("get Attach list by id " + bno);
 		return attachMapper.findByBno(bno);
 	}
+
+	@Override
+	public String encodeURIapp(String url) {
+		String txt = url;
+	    char[] txtChar = txt.toCharArray();
+	    for (int j = 0; j < txtChar.length; j++) {
+	        if (txtChar[j] >= '\uAC00' && txtChar[j] <= '\uD7A3') {
+	            String targetText = String.valueOf(txtChar[j]);
+	            try {
+	                txt = txt.replace(targetText, URLEncoder.encode(targetText, "utf-8"));
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+	        } 
+	    }	 
+	    log.info("boardservice send encoded txt : " + txt);
+		return txt;
+	}
+
+	@Override
+	public List<BoardVO> getRecentList(Criteria cri) {
+		log.info("get list with criteria : " + cri);
+		return mapper.getRecentList(cri);
+	}
+
+	@Override
+	public List<BoardVO> getListWithcontent(Criteria cri) {
+		log.info("nomalproduct serviceimpl : " + cri);
+		return mapper.getListWithcontent(cri);
+	}
+
+	@Override
+	public int getTotalwithcontent(Criteria cri) {
+		// TODO Auto-generated method stub
+		log.info("get total count");
+		
+		return mapper.getTotalwithcontent(cri);
+	}			  
 
 }

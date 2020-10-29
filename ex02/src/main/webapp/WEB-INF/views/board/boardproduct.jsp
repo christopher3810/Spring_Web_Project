@@ -11,14 +11,16 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
-	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/boardproduct.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/boardproduc	t.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/styles/kendo.common.min.css" />
 <link rel="stylesheet" href="/resources/styles/kendo.default.min.css" />
 <link rel="stylesheet"
 	href="/resources/styles/kendo.default.mobile.min.css" />
-
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  
 <script src="/resources/js/jquery.min.js"></script>
 
 <script src="/resources/js/kendo.ui.core.min.js"></script>
@@ -29,189 +31,273 @@
 
 </head>
 <body>
-<div class="all">
-<header id="header">
+	<div class="bootstrapnav" id="mobilebanner" >
+	<div class="fixed-top">
+	  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #dc3545; padding:0">
+  			<a class="navbar-brand" id ="site-logo" href="/board/list" style="padding:0"><image style ="width:170px;height:80px;vertical-align:top;" 
+  			src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/%EB%A1%9C%EA%B3%A0%EB%A1%9C%EA%B3%A0.png"></a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   			 <span class="navbar-toggler-icon"></span>
+  			</button>
+ 		 <div class="collapse navbar-collapse bg-white" id="navbarSupportedContent">
+   			 <ul class="navbar-nav mr-auto">
+   		   <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="/board/nomalproduct" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		  운동화
+      		  </a>
+      		  <c:set var="sneakers" value="운동화_스니커즈" />
+     		  <c:set var="Canvas" value="운동화_캔버스화" />
+     		  <c:set var="slipon" value="운동화_슬립온" />
+     		  <c:set var="sport_run" value="스포츠_런닝화" />
+     		  <c:set var="sport_golf" value="스포츠_골프화" />
+     		  <c:set var="sport_mountain" value="스포츠_등산화" />
+     		  <c:set var="loafers" value="구두_로퍼" />
+     		  <c:set var="heel" value="구두_힐" />
+     		  <c:set var="kids_nomal" value="키즈_운동화" />
+     		  <c:set var="kids_sport" value="키즈_스포츠" />
+     		  <c:set var="kids_sandals" value="키즈_샌들" />
+     		  <c:set var="adult_sandals" value="샌들_성인" />
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>스니커즈</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${Canvas}"/>'>캔버스화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${slipon}"/>'>슬립온</a>
+       		   <div class="dropdown-divider"></div>
+      		   <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_nomal}"/>'>키즈</a>
+      		  </div>
+     		</li>
+     		 <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		  스포츠
+      		  </a>
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_run}"/>'>런닝화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_golf}"/>'>골프화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_mountain}"/>'>등산화</a>
+       		   <div class="dropdown-divider"></div>
+      		   <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_sport}"/>'>키즈</a>
+      		  </div>
+     		</li>
+     		 <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		    구두
+      		  </a>
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${loafers}"/>'>로퍼</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${heel}"/>'>힐</a>
+      		  </div>
+     		</li>
+     		<li class="nav-item">
+     		   <a class="nav-link" href="#" id="navbarDropdown">샌들</a>
+     		    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${adult_sandals}"/>'>성인</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_sandals}"/>'>키즈</a>
+      		  </div>
+    		  </li>
+     		 <li class="nav-item">
+     		   <a class="nav-link" href="/board/event" id="navbarDropdown">기획전</a>
+    		  </li>
+    		   <li class="nav-item">
+     		   <a class="nav-link" href="/board/register" id="navbarDropdown">상품등록</a>
+    		  </li>
+    		   <li class="nav-item">
+    		   
+    		   <sec:authorize access="isAnonymous()">
+						<a class="nav-link" href="/board/login" id="navbarDropdown">로그인</a>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+						<a class="nav-link" href="#" id="navbarDropdown" onclick="document.getElementById('logout').submit();">로그아웃</a>
+				</sec:authorize>		   				   
+				<form id="logout" action="/customLogout" method="POST">
+  					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+				</form>
+    		  </li>
+    		   <li class="nav-item">
+     		   <a class="nav-link" href="#" id="navbarDropdown">고객센터</a>
+    		  </li>
+    		
+   			 </ul>
+   			 <!--  
+ 		   <form class="form-inline my-2 my-lg-0">
+  		    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    		</form>
+    		-->
+  		</div>
+		</nav>
+		</div>
+	</div>
+	<header id="header">
+		<div class="search-wrapper"">
+			<div class="mainlogo" style="float:left; margin-left: 15%">
+		   		 <a class="site-logo" href="/board/list"><image style ="width:170px;height:80px;vertical-align:top;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/%EB%A1%9C%EA%B3%A0%EB%A1%9C%EA%B3%A0.png"></a>
+			</div>
+			<div class="cartlogo" style="float:right; margin-right: 5%">	
+		   		 <a class="site-logo" href="#"><image style ="width:40px;height:40px;vertical-align:top;margin-top:15px;margin-bottom:5px" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/cart_icon.png"></a>
+		   		 <p style="text-align:center">장바구니</p>
+			</div>
+			<div class="userlogo" style="float:right; margin-right: 1%">
+				<sec:authorize access="isAnonymous()">
+						<a class="site-logo" href="/board/login"><image style ="width:50px;height:50px;vertical-align:top;margin-top:10px;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/usericon.png"></a>
+						<p style="text-align:center">로그인</p>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">		
+						<a class="site-logo" href="#" onclick="document.getElementById('logout').submit();"><image style ="width:50px;height:50px;vertical-align:top;margin-top:10px;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/usericon.png"></a>
+						<p style="text-align:center">로그아웃</p>
+				</sec:authorize>		   		 
+			</div>
+			<div class="searchbar" style="width:75%">
+				<form id="search-bar" action="/board/list" method='get'>
+					<select name='type' id="search-option">
+					<option value="T" selected>통합검색</option>
+					</select> 
+					<input type="text" name="keyword" id="focus" required class="search-box"
+						placeholder="제품명을 입력하세요" style="width: 40%" value="<c:out value="${pageMaker.cri.keyword}" />"/>
+					<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
+					<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/>
+					<button class="close-icon" type="reset"></button>
+				</form>
+			</div>
+		</div>
+		</div>
 		<nav id="headmenu">
 			<ul>
-				<li><a class="site-logo" href="/board/list">Logo</a></li>
-				<li><a href="#">MEN</a>
+				<li><a href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>운동화</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>스니커즈</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${Canvas}"/>'>캔버스화</a></li>
 
-						<li><a href="#">구두</a>
-							<ul>
-								<li><a href="#">옥스포드</a></li>
-								<li><a href="#">로퍼</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
-
-						<li><a href="#">잡화</a>
-							<ul>
-								<li><a href="#">가방</a></li>
-								<li><a href="#">모자</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${slipon}"/>'>슬립온</a></li>
+						
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_nomal}"/>'>키즈</a></li>
 
 					</ul></li>
 				<!--men-->
 
 
-				<li><a href="#">WOMEN</a>
+				<li><a href="#">스포츠</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_run}"/>'>런닝화</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_golf}"/>'>골프화</a></li>
 
-						<li><a href="#">구두</a>
-							<ul>
-								<li><a href="#">플랫</a></li>
-								<li><a href="#">힐</a></li>
-								<li><a href="#">로퍼</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
-
-						<li><a href="#">잡화</a>
-							<ul>
-								<li><a href="#">가방</a></li>
-								<li><a href="#">모자</a></li>
-							</ul></li>
-
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_mountain}"/>'>등산화</a></li>
+						
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_sport}"/>'>키즈</a></li>
+						
 					</ul></li>
 
-				<li><a href="#">KIDS</a>
+				<li><a href="#">구두</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${loafers}"/>'>로퍼</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${heel}"/>'>힐</a></li>
 
 					</ul></li>
-				<li><a href="#">EVENT</a></li>
-				<li><a href="#">기획전</a></li>
+				<li><a href="/board/event">샌들</a>
+					<ul>
+						<li><a href='<c:url value="/board/nomalproduct?content=${adult_sandals}"/>'>성인</a></li>
+
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_sandals}"/>'>키즈</a></li>
+				
+					</ul></li>
+				<li><a href="/board/event">기획전</a></li>
+				<li><a href="/board/register">상품등록</a></li>
 			</ul>
 		</nav>
 	</header>
+</div>
+	<!-- /header -->
 	<div id="example">
-		<div class="container">
-			<div class="k-card k-card-horizontal">
-				<div id="imagecontainer">
-					<!--  <img id="productimg" class="k-card-image"
-						src="${pageContext.request.contextPath}/resources/images/${board.attachments}">-->
-				</div>
-				<div class="k-vbox k-column">
-					<div class="k-card-header">
-						<h5 class="k-card-title">${board.title }</h5>
-						<h6 class="k-card-subtitle">Vans sports</h6>
-						<h5 class="k-card-title" id="productprice">${board.price }</h5>
-						<h5>원</h5>
-					</div>
-					<div class="k-card-body">
-						<p>Delivery Info
-						<p>
-							<h7>배송비 : 무료배송</h7>
-						<p>배송방법 : 국내배송
-						<p>평균 배송일 : 2일
-					</div>
-					<div
-						class="k-card-actions k-card-actions-vertical k-card-actions-stretched">
-						<hr class="k-card-separator">
-						<p>Size Info</p>
-						<p>
-							<h7>상품 사이즈 선택</h7>
-						</p>
-						<select id="size" style="width: 100%;">
-							<option value='220'>220</option>
-							<option value='230'>230</option>
-							<option value='240'>240</option>
-							<option value='250'>250</option>
-							<option value='260'>260</option>
-							<option value='270'>270</option>
-							<option value='280'>280</option>
-							<option value='290'>290</option>
+		
+			<div class="card-group" style="padding:3%;">
+				<div class="card" style="width:100%; border:0px;" id="imagecontainer">
+
+  					<div class="card-body">
+   					 <p class="card-text">사진상의 이미지와 본 상품이 다를 수도 있습니다</p>
+  				</div>
+				</div>			
+				<div class="card text-left" style="border:0px;">
+  					<div class="card-header" style="background-color:white">
+  						  <h5 class="k-card-title" style="font-weight:bold;">${board.title }</h5>
+  						  <h6 class="k-card-subtitle">Vans sports</h6>
+  						  <h5 class="k-card-title" id="productprice" style="font-weight:bold"">${board.price }원</h5>
+  					</div>
+ 					 <div class="card-body">
+ 					 			<h5 class="card-title">Delivery Info</h5>
+								<p>
+								<p class="card-text">배송비 : 무료배송</h7>
+								<p class="card-text">배송방법 : 국내배송</p>
+								<p class="card-text">평균 배송일 : 2일</p>
+
+  					</div>
+  					<div class="card-footer text-muted" style="background-color:white; border-bottom:1px solid #e5e5e5;">
+  						<p class="card-text">Size Info</p>
+   							 <label for="exampleFormControlSelect1">상품사이즈선택</label>
+   							 <select class="form-control" id="size" name="content" style="width:100%;">
+    			 					<option value='220'>220</option>
+									<option value='230'>230</option>
+									<option value='240'>240</option>
+									<option value='250'>250</option>
+									<option value='260'>260</option>
+									<option value='270'>270</option>
+									<option value='280'>280</option>
+									<option value='290'>290</option>			   				     
+  						 	 </select>
 						</select>
 					</div>
-					<hr class="k-card-separator">
-
-					<div
-						class="k-card-actions k-card-actions-vertical k-card-actions-stretched">
-						<!--<span class="k-button k-flat k-primary">Read more</span>
-                    <hr class="k-card-separator">
-                    <span class="k-button k-flat k-primary">Save for later</span>-->
-					</div>
 				</div>
-			</div>
+			
 		</div>
 		<!-- 신발 클릭시 주문 들어가는거 추가되는 라인 -->
-		<div class="show_size_amount"></div>
-		<div class="price_counter"
-			style="width: 100%; float: right; padding-left: 50%;">
-			<span style="font-size: 10; font-size: larger; color: black;">
-				총 결제금액 </span> <span
-				style="font-size: xx-large; font-color: red; color: red; margin-left: 45%">10000</span><span>원</span>
-			<button type="button" class="btn btn-secondary"
-				style="width: 46%; height: 50px">장바구니</button>
-			<button type="button" class="btn btn-dark"
-				style="width: 46%; height: 50px">바로구매</button>
-		</div>
+		<form class="form-inline" id="shoesorder" role='form' action="" method="post" name="shoesorderform" ">
+			<div class="show_size_amount">
+			</div>
+		</form>
 		
+		<div class="row" style="width:100%;">
+		<div class="col-12" style="width: 100%;">
+		
+				<div class="row">
+					<div class="col-xs-5 col-sm-7" style="text-align:right; padding-top:10px;">
+						<span style="font-size: 10; font-size: larger; color: black;">
+							총 결제금액 </span>
+					</div>
+					<div class="col-xs-5 col-sm-5" style="text-align:right;"> 
+						<span style="font-size: xx-large; font-color: red; color: red; margin-left: 45%" id="totalprice">0</span><span>원</span>
+					</div>
+				</div>
+				<div class="row justify-content-end">
+						<div class="col-xs-12 col-sm-6" style="text-align:center;">
+						<button type="button" class="btn btn-secondary"
+							style="width: 46%; height: 50px">장바구니</button>
+						<button type="button" class="btn btn-dark" id="buybutton"
+							style="width: 46%; height: 50px">바로구매</button>
+						</div>
+				</div>
+		</div>
+		</div>
+		</div>
 		<!-- 상단 상품 정보 -->
-		<div id="tabstrip" style="padding: 4%; margin-top: 9%;">
+	<div class="row" sytle="margin-top: 9%;">
+	<div class="col-sm-12">
+		<div id="tabstrip" style="padding: 4%;">
 			<ul>
 				<li class="k-state-active"
 					style="width: 24%; height: 70px;display: inline-block; text-align: center;">
-					<h3 style="margin-top:19px">상품정보</h3>
+					<h3 style="margin-top:19px" id="product_subbanner_text">상품정보</h3>
 				</li>
 				<li style="width: 24%; height: 70px;display: inline-block; text-align: center;">
-					<h3 style="margin-top:19px">상품후기</h3>
+					<h3 style="margin-top:19px" id="product_subbanner_text">상품후기</h3>
 				</li>
 				<li style="width: 24%; height: 70px;display: inline-block; text-align: center;">
-					<h3 style="margin-top:19px">Q&A</h3>
+					<h3 style="margin-top:19px" id="product_subbanner_text">Q&A</h3>
 				</li>
 				<li style="width: 24%; height: 70px;display: inline-block; text-align: center;">
-					<h3 style="margin-top:19px">배송/교환/반품/AS안내</h3>
+					<h3 style="margin-top:19px" id="product_subbanner_text">배송/교환/반품/AS안내</h3>
 				</li>
 			</ul>
 			<div><!-- 상품 설명 첨부파일 보여주는 공간 -->
@@ -235,6 +321,7 @@
 				</div><!--rowend  -->
 			</div><!--div end  -->
 			
+			
 		<div><!--startreplysection -->
 			<div class="reply-header" style="border-bottom: 2px solid black; height:60px; padding-top:50px; text-align:right; ">
 					<h4 style ="float:left;">댓글 목록 </h4>
@@ -245,6 +332,7 @@
 					
 					</sec:authorize>
 			</div>
+			<!-- 댓글 작성 버튼 -->
 				<ul class="list-group list-group-flush" id="replychat">
 					<!-- start line of reply -->
 					<li class = "list-group-item" data-rno='12'>
@@ -272,16 +360,16 @@
 			</div>
 		</div>
 		<div style= "text-align:center;">
-			<sec:authentication property="principal" var="pinfo" />
-			
+				<sec:authentication property="principal" var="pinfo" />
+				<sec:authorize access="hasRole('ROLE_ADMIN')" var="u"></sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 		
-				<c:if test="${pinfo.username eq board.writer}">
+				<c:if test="${pinfo.username eq board.writer || u == true}">
 						
 				<button data-oper='modify' class="btn btn-default">Modify</button>
 			
 				</c:if>
-			</sec:authorize>
+				</sec:authorize>
 			
 			<button data-oper='list' class="btn btn-info">List</button>
 				
@@ -302,19 +390,20 @@
 	</div>
 	<div class="modal-body">
 		<div class="form-group">
-		<label>댓글내용</label>
-		<input class="form-control" name='reply' value='NewReply!!!!'>
-		</div>
-		<div class="form-group">
 			<label>댓글 작성자</label>
-			<input class="form-control" name='replyer' value='replyer'>
+			<c:set var="replyername" value="${pinfo.username}" />
+			<label id='replyername' name='replyer'>${replyername}</label>
 		</div>		
+		<div class="form-group">
+		<label>댓글내용</label>
+		<input id="replytext" class="form-control" name='reply' value='NewReply!!!!'>
+		</div>
 		<div class="form-group">
 			<label>댓글 작성 시간</label>
 			<input class="form-control" name='replyDate' value=''>
 		</div>
 			
-		</div>
+	</div>
 		
 	<div class="modal-footer">
 				<button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
@@ -325,14 +414,21 @@
 	</div>
 	</div>
 	</div>
+	<div>
+	<span id="220price" style="DISPLAY: none;">1</span>
+	<span id="230price" style="DISPLAY: none;">1</span>
+	<span id="240price" style="DISPLAY: none;">1</span>
+	<span id="250price" style="DISPLAY: none;">1</span>
+	<span id="260price" style="DISPLAY: none;">1</span>
+	<span id="270price" style="DISPLAY: none;">1</span>
+	<span id="280price" style="DISPLAY: none;">1</span>
+	<span id="290price" style="DISPLAY: none;">1</span>
+	
+	</div>	
+</div>
 	<style>
-.all{
-	width: 1350px;
-    max-width: none !important;
-     /*반응형 막기*/
-}
 #example {
-	margin-top: 10rem;
+	margin-top: 16rem;	
 }
 
 #size {
@@ -456,14 +552,6 @@
 	background-color: white;
 }
 
-#sizecounter {
-	margin-top: 15px;
-	text-align: center;
-	margin-left: 180px;
-	height: 50%;
-	width: 20%;
-}
-
 .sizenum {
 	margin-left: 30px;
 	width: 10%;
@@ -471,6 +559,17 @@
 }
 #imgli {
  list-style:none;
+}
+
+.form-control{
+	border:0;
+}
+#replyername{
+	font-size: 1.3rem;
+    font-weight: 600;
+}
+#replytext{
+	border : 1px solid #e5e5e5;
 }
 
 </style>
@@ -546,12 +645,11 @@
 				
 				$(arr).each(function(i, attach){ 
 					if(attach.fileType && attach.maincheck == false ){
-						var test = attach.uploadPath + "/s_" + attach.uuid + "_"+ attach.fileName
-						//s_ 섬네일용 사진이라 크기확대시 깨짐 원본 이미지를 넣어주자 
-						var fileCallPath = encodeURIComponent (attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName);
+						
+						//상품 설명 이미지
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
 						"data-type='"+attach.fileType+"'><div>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "<img class='card-img' src='/displayS3images?fileName="+attach.fileName+"&directory=images&uuid="+attach.uuid+"&path="+attach.uploadPath+"'>";
 						str += "</div>";
 						str += "</li>";
 						$(".uploadResult ul").html(str);
@@ -560,12 +658,12 @@
 				//main img
 				var str ="";				
 				$(arr).each(function(i, attach){
-					if(attach.maincheck == true){
-						var fileCallPath = attach.uploadPath + "/" + attach.uuid + "_"+ attach.fileName;
+					if(attach.maincheck){
+						//해당 상품 메인 이미지 
 						
 						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'"+
-						"data-type='"+attach.fileType+"' id = 'imgli'><div>";
-						str += "<img id = 'productimg' src='/display?fileName="+fileCallPath+"'>";
+						"data-type='"+attach.fileType+"' id = 'imgli'><div>";									
+						str += "<img class='card-img-top' id = 'productimg' src='/displayS3images?fileName="+attach.fileName+"&directory=images&uuid="+attach.uuid+"&path="+attach.uploadPath+"'>";
 						str += "</div>";
 						str += "</li>";
 						$("#imagecontainer").html(str);
@@ -602,9 +700,10 @@
 	
 		var bnoValue = ${board.id};
 		var replyUL = $("#replychat");
+		//relpy ul
 		
 		    showList(1);
-			
+			//밑에 지정 함수	
 			
 			//댓글 페이징
 			var pageNum = 1;
@@ -694,13 +793,14 @@
 			
 			var modal = $(".modal");
 			var modalInputReply = modal.find("input[name='reply']");
-			var modalInputReplyer = modal.find("input[name='replyer']");
+			var modalInputReplyer = modal.find("label[name='replyer']");
 			var modalInputReplyDate = modal.find("input[name='replyDate']");
 			
 			var modalModBtn = $("#modalModBtn");
 			var modalRemoveBtn = $("#modalRemoveBtn");
 			var modalRegisterBtn = $("#modalRegisterBtn");
 			
+			//댓글작성 버튼 누를시
 			$("#addReplyBtn").click( function(){
 				
 				modal.find("input").val("");
@@ -712,15 +812,20 @@
 				$(".modal").modal("show");
 				
 			});
-			
-			modalRegisterBtn.on("click", function(e){
+			//댓글 작성버튼 누를시 
+			$("#modalRegisterBtn").click( function(e){
 				
+				console.log("모달 데이터값 체크 InputReply:" + modalInputReply.val());
+				console.log("모달 데이터값 체크 InputReplyer:" + modalInputReplyer.text());
+				console.log("모달 데이터값 체크 bnoValue:" + bnoValue);
 				var reply={
 						//입력받은 댓글 데이터
-						reply: modalInputReply.val(),
-						replyer:modalInputReplyer.val(),
+						reply:modalInputReply.val(),
+						replyer:modalInputReplyer.text(), 	
 						bno:bnoValue
 				};
+				console.log("버튼 클릭시 reply check : " + reply)
+				
 				replyService.add(reply, function(result){
 					
 					alert(result);
@@ -738,7 +843,8 @@
 			$("#replychat").on("click", "li", function(e){
 				
 				var rno = $(this).data("rno");
-				
+				var loginusername = modalInputReplyer.text();
+
 				replyService.get(rno, function(reply){
 					
 					modalInputReply.val(reply.reply);
@@ -748,9 +854,10 @@
 					modal.data("rno", reply.rno);
 					
 					modal.find("button[id !='modalCloseBtn']").hide();
-					modalModBtn.show();
-					modalRemoveBtn.show();
-					
+					if(loginusername == reply.replyer){
+						modalModBtn.show();
+						modalRemoveBtn.show();
+					}				
 					$(".modal").modal("show");
 				});
 				
@@ -832,12 +939,10 @@
 									}
 								}
 							});
-
+							
 							$("#size").change(function() {
 												var temp = sizedata;
-												var sizedata = $(
-														"#size option:selected")
-														.val();
+												var sizedata = $("#size option:selected").val();
 												var pricetemp = '';
 
 												if ($("#size" + sizedata).length > 0) { //수행할 코드}{
@@ -854,41 +959,134 @@
 													$(".sizeprice" + sizedata)
 															.html(setprice);
 												} else {
-													$(".show_size_amount")
-															.append(
-																	'<div class="orderamount" id="size'+sizedata+'"><h4 class="sizenum">'
+													
+													$(".show_size_amount").append(
+																	
+																	'<div class="row" style="width:100%;"><div class="form-group mb-2" id="size'+sizedata+'" style="border-bottom: 1px solid #e5e5e5;width: 100%;height:50px;"> '
+																	
+																			+ '<div class="row" style="width:100%;"><div class="col-sm-4" id="productsizediv"><label id="productsize" for="staticEmail" class="col-form-label">'
+																			+ sizedata + '</label></div>'
+																			+ '<div class="col-sm-4" id ="productsizecounterdiv"><input class="form-control" id ="productsizecounter" name="'
 																			+ sizedata
-																			+ '</h4><input class="sizecounterclass" id="'
+																			+ '" type="number" value="1" min="1" max="10" step="1" style="width=50%;"/></div>'
+																			+ '<div class="col-sm-4" id="sizepricediv"><label id="sizepriclabel" class="sizeprice'
 																			+ sizedata
-																			+ '" type="number" value="1" min="0" max="10" step="1" style="margin-top:15px;text-align:center;margin-left:180px;height:50%;width:20%;"/>'
-																			+ '<h4 class="sizeprice'
-																			+ sizedata
-																			+ '" style="display:inline; margin-left:20%">'
+																			+ '">'
 																			+ sizeprice
-																			+ '</h4><h4 class="sizenum" style="margin:0;">��</h4><button type="button" id="x_but'+sizedata+'">X</button></div>');
-													$("#x_but" + sizedata)
-															.click(
-																	function() {
-																		$(this)
-																				.parent()
-																				.remove();
-																	});
+																			+ '<button class="btn btn-light type="button" id="x_but" name="x_but'+sizedata+'">X</button></label></div></div></div>'
+																			
+													);
+													
+																	
+													 var tagPrice = $('#totalprice').text();
+													 tagPrice = parseInt(tagPrice);
+													 tagPrice = tagPrice + parseInt(sizeprice);
+													$("#totalprice").html(tagPrice);
+													
 
 												}
+												
+												
 
 											});
-							/* 
-							$(".sizecounterclass").change(function(e){  
-							 var tagid = e.target.getAttribute('id');
-							 var tagVar = $('#'+tagid).val();
-							 var tagPrice = ''; 	     	 
-							 tagprice = parsInt(sizeprice)
-							 tagprice = tagprice * parseInt(tagVar);
-							 tagprice = tagprice.toString();
-							 $(".sizeprice"+tagId).html(tagprice);
-							});
-							 */
 
+							$("#buybutton").click(function() {
+								
+								alert("구매 하시겠습니까 ?");
+							});
+							//jquery 로직
+							//append시 토탈금액 합산 추가될시 계속 합연산
+							//append하고나서 input 내 가격 변동시 외부에 존재하는 사이즈별 hidden 에 value값을 산정하여
+							//value 갯수 별로 계산후 ex) 5개면 4개까지를 총합에서 뺴고 다시 5개를 더하는 식 
+							$('.show_size_amount').on('change', '#productsizecounter',function(e){
+								
+						           var tagid = e.target.name ;
+						           console.log("클릭시 보이는 name : " + tagid);
+						           var flagval = $('#'+tagid+'price').text();
+						           flagval = parseInt(flagval);
+						           console.log("비교하기위한 val : " + flagval);
+						           var tagVar = $('input[name='+tagid+']').val();
+						           tagVar = parseInt(tagVar);
+				                   console.log("클릭후바뀐 val : " + tagVar);
+						           if(flagval < tagVar){
+						        	   //값을 올린거
+						        	   
+						        	   tagVar = parseInt(tagVar)*parseInt(sizeprice);
+				                  	   var tagPrice = $('#totalprice').text();
+				                  	   tagPrice = parseInt(tagPrice);
+				                  	   console.log("전체합산가격 : " + tagPrice);
+				                  	   
+				                  	   tagPrice = tagPrice - flagval*parseInt(sizeprice);
+				                  	   
+				                  	   tagPrice = tagPrice + tagVar;
+						        	   
+						        	   
+				                  	 $("#totalprice").html(tagPrice);
+						        	  flagval = flagval + 1; 
+						        	 $("#"+tagid+"price").html(flagval);
+						           }
+						           else if(flagval == tagVar){
+						        	   //동결
+						        	   
+						        	   tagVar = parseInt(tagVar)*parseInt(sizeprice);
+				                  	   var tagPrice = $('#totalprice').text();
+				                  	   tagPrice = parseInt(tagPrice);
+				                  	   console.log("checkPrice : " + tagPrice);
+						        	   
+				                  	   tagPrice = tagVar;
+				                  	   $("#totalprice").html(tagPrice);
+						        	   flagval = flagval + 1; 
+						        	   $("#"+tagid+"price").html(flagval);
+						           }
+						           else if(flagval > tagVar){
+						        	   //값을 낮춘거
+						        	   
+						        	   tagVar = parseInt(tagVar)*parseInt(sizeprice);
+				                  	   var tagPrice = $('#totalprice').text();
+				                  	   tagPrice = parseInt(tagPrice);
+				                  	   console.log("val줄일때 합산가격 불러온것 : " + tagPrice);
+						        	   var temp;
+						        	   temp = flagval*parseInt(sizeprice);
+				                  	   tagPrice = tagPrice - temp;
+				                  	   tagPrice = tagPrice + tagVar;
+			                  	   
+				                  	   $("#totalprice").html(tagPrice);
+						        	   flagval = flagval - 1;
+						        	   $("#"+tagid+"price").html(flagval);
+						           }
+				                   
+							});
+							
+							$('.show_size_amount').on('click', '#x_but' ,function(e){
+								var tagid = e.target.name ;
+								tagid = tagid.substring(5,8);
+								console.log("test_substring : " + tagid);
+								var tagVar = $('input[name='+tagid+']').val();
+								var tagPrice = $('#totalprice').text();
+								tagPrice = parseInt(tagPrice);
+								console.log("test_tagVar: " + tagVar);
+								console.log("test_tagPrice : " + tagPrice);
+								var temp ='';
+								temp = parseInt(sizeprice) * parseInt(tagVar);
+								console.log("상품가격 x상품갯수 : " + temp);
+								if(temp > tagPrice){
+									temp = temp - tagPrice;
+								}
+								else{
+									temp = tagPrice - temp;
+								}
+								console.log("test xbut_temp : " + temp);
+								if(0 > temp || 0 == temp ){
+									$("#totalprice").html("0");
+								}
+								else{
+									$("#totalprice").html(temp);
+								}
+								
+								$(this).parent().parent().parent().parent().remove();	
+							});
+
+							
 						});
 	</script>
 

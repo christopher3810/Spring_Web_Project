@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.test.mapper.EventMapper"><!-- 패키지 포함 인터페이스명 -->
+
+	<select id="getEvent" resultType="com.spring.test.domain.EventVO">
+		<![CDATA[
+			select*from event where bno > 0
+		]]>
+	</select>
+	
+	<select id="read" resultType="com.spring.test.domain.EventVO">
+		select * from event 
+		where 
+		bno = #{bno}
+	</select>
+
+	<delete id="delete">
+	
+		delete from event where id = #{bno}<!-- 오라클과 다른점은 mysql은 from 테이블명 오라클은 
+			from 안써두댐 -->
+	</delete>
+<!-- 
+	<update id="update">
+		update board
+		set title = #{title},
+		content = #{content},
+		attachments =
+		#{attachments},
+		price = #{price},
+		likes = #{likes},
+		views = #{views},
+		update_time = now(), 
+		size220 = #{size220},
+		size230 = #{size230},
+		size240 = #{size240},
+		size250 = #{size250},
+		size260 = #{size260},
+		size270 = #{size270},
+		size280 = #{size280},
+		size290 = #{size290}
+		where id = #{id}
+	</update>
+	 -->
+	<!-- ROW_NUMBER() OVER ( [ PARTITION BY partition_expression ] [ ORDER BY 
+		order_list ] ) -->
+
+	<!-- <select id="getListWithPaging" resultType="com.spring.test.domain.BoardVO"> 
+		<![CDATA[ select id, title, content, attachments, price , likes, views, create_time 
+		from board where id > 0 ORDER BY ID ASC LIMIT #{pageStart}, #{amount}; ]]> 
+		</select> -->
+	<select id="getEventWithPaging"
+		resultType="com.spring.test.domain.EventVO">
+	<![CDATA[
+		select bno, name, uuid, uploadpath, startdate, enddate, filetype
+		from event
+		where bno > 0
+		]]>
+		<![CDATA[
+		ORDER BY bno ASC
+		LIMIT #{pageStart}, #{amount};
+	]]>
+		
+	</select>
+		
+		<select id="getTotalCount" resultType="int">
+			select count(*) from event 
+			where
+			bno>0
+		</select>
+
+</mapper>

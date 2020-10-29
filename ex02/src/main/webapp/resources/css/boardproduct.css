@@ -17,7 +17,7 @@
 	padding : 10px;
 	align-content : center;
 	text-align : center;
-	width : 900px;
+	width : 100%;
 }
 
 .uploadResult ul li img{
@@ -59,4 +59,49 @@
 
 .ProductPicture img{
 	width : 600px;
+}
+
+@media (max-width: 940px) { 
+	#product_subbanner_text{
+	
+		    margin-top: 22px;
+   		    font-size: 1.2rem;
+            font-weight: 700;
+	}
+	}
+	
+@media (max-width: 575px) {
+	
+	#productsizediv{
+			
+			width : 15%;
+	}
+	#productsize{
+		
+			width:20%;
+			
+	}
+	#productsizecounterdiv{
+	
+		width:40%;
+		
+	}
+	#productsizecounter{
+	
+		width:46%;
+	
+	}
+	#sizepricediv{
+	
+		width:40%;
+		
+		
+	}
+	#sizepriclabel{
+
+		width:100%;
+		text-align: right;
+	}
+	
+	
 }

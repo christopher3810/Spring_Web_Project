@@ -48,8 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update board
 		set title = #{title},
 		content = #{content},
-		attachments =
-		#{attachments},
+		attachments = #{attachments},
 		price = #{price},
 		likes = #{likes},
 		views = #{views},
@@ -82,9 +81,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 		ORDER BY ID ASC
 		LIMIT #{pageStart}, #{amount};
+	]]>		
+	</select>	
+	
+	<select id="getListWithcontent"
+		resultType="com.spring.test.domain.BoardVO">
+	<![CDATA[
+		select id, title, content, attachments, price , likes, views, create_time , update_time ,replycnt
+		from board
+		where id > 0 AND content = #{content}
+		]]>
+			<include refid="search"/>
+		<![CDATA[
+		ORDER BY update_time DESC
+		LIMIT #{pageStart}, #{amount};
+	]]>
+	</select>
+	
+	<select id="getRecentList"
+		resultType="com.spring.test.domain.BoardVO">
+	<![CDATA[
+		select id, title, content, attachments, price , likes, views, create_time , update_time ,replycnt
+		from board
+		where id > 0
+		]]>
+		<![CDATA[
+		ORDER BY create_time DESC
+		LIMIT 12;
 	]]>
 		
 	</select>
+	
+
 	<sql id="search">
 		<if test="type != null">
 			<if test="type == 'T'.toString()">
@@ -123,6 +151,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select count(*) from board 
 			where
 			id>0
+			<include refid="search" />
+		</select>
+		
+		<select id="getTotalwithcontent" resultType="int">
+			select count(*) from board 
+			where
+			id>0 and content = #{content}
 			<include refid="search" />
 		</select>
 

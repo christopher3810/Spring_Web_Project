@@ -96,33 +96,24 @@ var replyService = (function(){
 			}
 		});
 	}
+	function getFormatDate(date){
+	    var year = date.getFullYear();              //yyyy
+	    var month = (1 + date.getMonth());          //M
+	    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	    var day = date.getDate();                   //d
+	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	    return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+	}
 	//해당일에 해당하는 데이터는 시/분/초 , 전날 등록 데이터 년/월/일 현재 시간 기준으로 화면 내용 달라지도록 함수 작성후 사용
 	function displayTime(timeValue){
 		
-		var today = new Date();
+		console.log("displaytime 넘어온 reply timeValue check : " + timeValue)
+		var timevaluetemp = new Date(timeValue);
+		console.log("displaytime 넘어온 reply timeValueNewDate check : " + timevaluetemp)
+		timevaluetemp = getFormatDate(timevaluetemp)
+		console.log("displaytime 넘어온 reply timeValuefinal check : " + timevaluetemp)
 		
-		var gap = today.getTime() - timeValue;
-		
-		var dateObj = new Date(timeValue);
-		var str ="";
-		
-		if(gap < (1000 * 60 * 60 * 24)){
-			
-			var hh = dateObj.getHours();
-			var mi = dateObj.getMinutes();
-			var ss = dateObj.getSeconds();
-			
-			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
-				':', (ss > 9 ? '' : '0') + ss ].join('');
-		} else{
-			var yy = dateObj.getFullYear();
-			var mm = dateObj.getMonth()+1; // getMonth() is zero based +1
-			var dd = dateObj.getDate();
-			
-			
-			return [ yy, '/', (mm > 9 ? '' : '0')+ mm, '/',
-				(dd > 9 ? '' : '0') + dd ].join('');
-		}
+		return timevaluetemp;
 	}
 	;
 	

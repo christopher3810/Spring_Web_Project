@@ -13,7 +13,7 @@ public class Criteria {
 
 	private int pageNum; //보여줄 페이지 번호
 	private int amount; //페이지당 보여줄 게시글의 개수 
-	
+	private String content;
 	private String type;
 	private String keyword;
 	

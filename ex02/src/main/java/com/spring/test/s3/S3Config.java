@@ -14,8 +14,8 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 public class S3Config {
 
     //프로퍼티스 파일 혹은 yaml 파일에서 s3 access id와 pw를 호출한다.
-	private static String accessKey = "AKIAXO3VOZSHE7HTLZ7B"; // 엑세스 키
-	private static String secretKey = "kUTwy4hCqeD/27IEcgtLv5t5pyeObqvc/Y/0dEGB"; // 보안 엑세스 키
+	private static String accessKey = ""; // 엑세스 키
+	private static String secretKey = ""; // 보안 엑세스 키
 	
 	@Bean
 	public static BasicAWSCredentials AwsCredentials() {

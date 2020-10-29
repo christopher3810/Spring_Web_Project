@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
@@ -35,107 +35,181 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<header id="header">
+	<div class="bootstrapnav" id="mobilebanner" >
+	<div class="fixed-top">
+	  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #dc3545; padding:0">
+  			<a class="navbar-brand" id ="site-logo" href="/board/list" style="padding:0"><image style ="width:170px;height:80px;vertical-align:top;" 
+  			src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/%EB%A1%9C%EA%B3%A0%EB%A1%9C%EA%B3%A0.png"></a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   			 <span class="navbar-toggler-icon"></span>
+  			</button>
+ 		 <div class="collapse navbar-collapse bg-white" id="navbarSupportedContent">
+   			 <ul class="navbar-nav mr-auto">
+   		   <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="/board/nomalproduct" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		  운동화
+      		  </a>
+      		  <c:set var="sneakers" value="운동화_스니커즈" />
+     		  <c:set var="Canvas" value="운동화_캔버스화" />
+     		  <c:set var="slipon" value="운동화_슬립온" />
+     		  <c:set var="sport_run" value="스포츠_런닝화" />
+     		  <c:set var="sport_golf" value="스포츠_골프화" />
+     		  <c:set var="sport_mountain" value="스포츠_등산화" />
+     		  <c:set var="loafers" value="구두_로퍼" />
+     		  <c:set var="heel" value="구두_힐" />
+     		  <c:set var="kids_nomal" value="키즈_운동화" />
+     		  <c:set var="kids_sport" value="키즈_스포츠" />
+     		  <c:set var="kids_sandals" value="키즈_샌들" />
+     		  <c:set var="adult_sandals" value="샌들_성인" />
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>스니커즈</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${Canvas}"/>'>캔버스화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${slipon}"/>'>슬립온</a>
+       		   <div class="dropdown-divider"></div>
+      		   <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_nomal}"/>'>키즈</a>
+      		  </div>
+     		</li>
+     		 <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		  스포츠
+      		  </a>
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_run}"/>'>런닝화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_golf}"/>'>골프화</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${sport_mountain}"/>'>등산화</a>
+       		   <div class="dropdown-divider"></div>
+      		   <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_sport}"/>'>키즈</a>
+      		  </div>
+     		</li>
+     		 <li class="nav-item dropdown">
+      		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		    구두
+      		  </a>
+     		   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${loafers}"/>'>로퍼</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${heel}"/>'>힐</a>
+      		  </div>
+     		</li>
+     		<li class="nav-item">
+     		   <a class="nav-link" href="#" id="navbarDropdown">샌들</a>
+     		    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="mobiledropdownmenu">
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${adult_sandals}"/>'>성인</a>
+        		  <a class="dropdown-item" href='<c:url value="/board/nomalproduct?content=${kids_sandals}"/>'>키즈</a>
+      		  </div>
+    		  </li>
+     		 <li class="nav-item">
+     		   <a class="nav-link" href="/board/event" id="navbarDropdown">기획전</a>
+    		  </li>
+    		   <li class="nav-item">
+     		   <a class="nav-link" href="/board/register" id="navbarDropdown">상품등록</a>
+    		  </li>
+    		   <li class="nav-item">
+    		   
+    		   <sec:authorize access="isAnonymous()">
+						<a class="nav-link" href="/board/login" id="navbarDropdown">로그인</a>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+						<a class="nav-link" href="#" id="navbarDropdown" onclick="document.getElementById('logout').submit();">로그아웃</a>
+				</sec:authorize>		   				   
+				<form id="logout" action="/customLogout" method="POST">
+  					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+				</form>
+    		  </li>
+    		   <li class="nav-item">
+     		   <a class="nav-link" href="#" id="navbarDropdown">고객센터</a>
+    		  </li>
+    		
+   			 </ul>
+   			 <!--  
+ 		   <form class="form-inline my-2 my-lg-0">
+  		    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    		</form>
+    		-->
+  		</div>
+		</nav>
+		</div>
+	</div>
+	<header id="header">
+		<div class="search-wrapper"">
+			<div class="mainlogo" style="float:left; margin-left: 15%">
+		   		 <a class="site-logo" href="/board/list"><image style ="width:170px;height:80px;vertical-align:top;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/%EB%A1%9C%EA%B3%A0%EB%A1%9C%EA%B3%A0.png"></a>
+			</div>
+			<div class="cartlogo" style="float:right; margin-right: 5%">	
+		   		 <a class="site-logo" href="#"><image style ="width:40px;height:40px;vertical-align:top;margin-top:15px;margin-bottom:5px" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/cart_icon.png"></a>
+		   		 <p style="text-align:center">장바구니</p>
+			</div>
+			<div class="userlogo" style="float:right; margin-right: 1%">
+				<sec:authorize access="isAnonymous()">
+						<a class="site-logo" href="/board/login"><image style ="width:50px;height:50px;vertical-align:top;margin-top:10px;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/usericon.png"></a>
+						<p style="text-align:center">로그인</p>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">		
+						<a class="site-logo" href="#" onclick="document.getElementById('logout').submit();"><image style ="width:50px;height:50px;vertical-align:top;margin-top:10px;" src="https://sungmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/logo/usericon.png"></a>
+						<p style="text-align:center">로그아웃</p>
+				</sec:authorize>		   		 
+			</div>
+			<div class="searchbar" style="width:75%">
+				<form id="search-bar" action="/board/list" method='get'>
+					<select name='type' id="search-option">
+					<option value="T" selected>통합검색</option>
+					</select> 
+					<input type="text" name="keyword" id="focus" required class="search-box"
+						placeholder="제품명을 입력하세요" style="width: 40%" value="<c:out value="${pageMaker.cri.keyword}" />"/>
+					<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
+					<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/>
+					<button class="close-icon" type="reset"></button>
+				</form>
+			</div>
+		</div>
+		</div>
 		<nav id="headmenu">
 			<ul>
-				<li><a class="site-logo" href="/board/list">Logo</a></li>
-				<li><a href="#">MEN</a>
+				<li><a href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>운동화</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sneakers}"/>'>스니커즈</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${Canvas}"/>'>캔버스화</a></li>
 
-						<li><a href="#">구두</a>
-							<ul>
-								<li><a href="#">옥스포드</a></li>
-								<li><a href="#">로퍼</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
-
-						<li><a href="#">잡화</a>
-							<ul>
-								<li><a href="#">가방</a></li>
-								<li><a href="#">모자</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${slipon}"/>'>슬립온</a></li>
+						
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_nomal}"/>'>키즈</a></li>
 
 					</ul></li>
 				<!--men-->
 
 
-				<li><a href="#">WOMEN</a>
+				<li><a href="#">스포츠</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_run}"/>'>런닝화</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_golf}"/>'>골프화</a></li>
 
-						<li><a href="#">구두</a>
-							<ul>
-								<li><a href="#">플랫</a></li>
-								<li><a href="#">힐</a></li>
-								<li><a href="#">로퍼</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
-
-						<li><a href="#">잡화</a>
-							<ul>
-								<li><a href="#">가방</a></li>
-								<li><a href="#">모자</a></li>
-							</ul></li>
-
+						<li><a href='<c:url value="/board/nomalproduct?content=${sport_mountain}"/>'>등산화</a></li>
+						
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_sport}"/>'>키즈</a></li>
+						
 					</ul></li>
 
-				<li><a href="#">KIDS</a>
+				<li><a href="#">구두</a>
 					<ul>
 
-						<li><a href="#">운동화</a>
-							<ul>
-								<li><a href="#">스니커즈</a></li>
-								<li><a href="#">캔버스화</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${loafers}"/>'>로퍼</a></li>
 
-						<li><a href="#">스포츠</a>
-							<ul>
-								<li><a href="#">런닝화</a></li>
-								<li><a href="#">축구화</a></li>
-							</ul></li>
-
-						<li><a href="#">샌들</a>
-							<ul>
-								<li><a href="#">아쿠아슈즈</a></li>
-								<li><a href="#">스트랩샌들</a></li>
-							</ul></li>
+						<li><a href='<c:url value="/board/nomalproduct?content=${heel}"/>'>힐</a></li>
 
 					</ul></li>
-				<li><a href="#">EVENT</a></li>
-				<li><a href="#">기획전</a></li>
+				<li><a href="/board/event">샌들</a>
+					<ul>
+						<li><a href='<c:url value="/board/nomalproduct?content=${adult_sandals}"/>'>성인</a></li>
+
+						<li><a href='<c:url value="/board/nomalproduct?content=${kids_sandals}"/>'>키즈</a></li>
+				
+					</ul></li>
+				<li><a href="/board/event">기획전</a></li>
+				<li><a href="/board/register">상품등록</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -145,10 +219,13 @@
 			<p class="title">새로운 상품 등록</p>
 			<form id="ticketsForm" role='form' action="/board/modify" method="post">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<ul id="fieldlist">			
-					<li><label for="fullname" class="required" style="width: 50%; height: 30px;">게시물 번호</label>
-					<input class="form-control" name="id" value="${board.id}" readonly="readonly"
-					style="width: 50%; height: 30px;"></li>
+				<ul id="fieldlist">
+					<li><label>상품번호:</label> <input type="text" class="k-textbox"
+						style="width: 50%; height: 30px;" value='${board.id}'
+						readonly="redonly" name='id'/></li>			
+					<li><label>작성자:</label> <input type="text" class="k-textbox"
+						style="width: 50%; height: 30px;" value='<sec:authentication property="principal.username"/>'
+						readonly="redonly" name='writer'/></li>
 					<li><label for="fullname" class="required">상품명</label> <input
 						type="text" id="title" name="title" class="k-textbox"
 						value="${board.title}" required validationMessage="Enter {0}"
@@ -156,11 +233,23 @@
 					<li><label>상품가격:</label> <input id="price" name='price' type="number"
 						title="currency" value="${board.price}" min="0" max="10000000"
 						style="width: 50%; height: 30px;" /></li>
-					<li><label for="tel" class="required">상품상세정보</label> <input
-						type="tel" id="tel" name="content" class="k-textbox" pattern="\d{10}"
-						placeholder="Enter a ten digit number" required
-						validationMessage="Enter at least ten digits" value="${board.content}"
-						style="width: 50%; height: 30px;" /></li>
+					<li><div class="form-group">
+   							 <label for="exampleFormControlSelect1">상품상세정보</label>
+   							 <select class="form-control" id="exampleFormControlSelect1" name="content" style="width: 50%; height: 30px;">
+    			 					 <option>운동화_스니커즈</option>
+   				 					 <option>운동화_캔버스화</option>
+   				  					 <option>운동화_슬립온</option>
+   					   				 <option>스포츠_런닝화</option>
+  				   				     <option>스포츠_골프화</option>
+  				   				     <option>스포츠_등산화</option>
+  				   				     <option>구두_로퍼</option>
+  				   				     <option>구두_힐</option>
+  				   				     <option>샌들_성인</option>
+  				   				     <option>키즈_운동화</option>
+  				   				     <option>키즈_스포츠</option>
+  				   				     <option>키즈_샌들</option>				   				     
+  						 	 </select>
+  							</div>
 					<li>
 						<hr>
 						<h2>상품 사이즈 입력</h2>
@@ -186,10 +275,10 @@
 					<li class="confirm" style="width: 100%;">
 					
 					<sec:authentication property="principal" var="pinfo" />
-		
+					<sec:authorize access="hasRole('ROLE_ADMIN')" var="u"></sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 		
-					<c:if test="${pinfo.username eq board.writer}">
+					<c:if test="${pinfo.username eq board.writer || u == true}">
 					
 						<button class="k-button k-primary" type="submit" data-oper='modify'>수정완료</button>
 						<button class="k-button k-primary" type="submit" data-oper='remove'>게시물삭제</button>
@@ -274,7 +363,7 @@
 	color: #fff;
 	background-color: #1e88e5;
 	padding: 20px 30px;
-	margin: 0;
+	margin-top: 170px;
 }
 
 #fieldlist {
@@ -365,9 +454,9 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 						str += "<div col-md-4 center-block>";
 						str += "<span> "+ obj.fileName + "</span>";
-						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+						str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 						"<span aria-hidden='true'>&times;</span></button><br>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "<img src='/displayS3images?fileName="+obj.fileName+"&directory=images&uuid="+obj.uuid+"&path="+obj.uploadPath+"'>";				
 						str += "</div>";
 						str + "</li>";
 						uploadUL.append(str);	
@@ -377,15 +466,13 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				 		str ="";
 						if(obj.fileType){ //이미지 파일 아닌걸 올리시 파일 업로드 하는 png를 보여줌 
 							
-							var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+ obj.uuid + "_" + obj.fileName);
-						
 							str += "<li data-path ='"+obj.uploadPath+"'";
 							str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 							str += "<div col-md-4 center-block>";
 							str += "<span> "+ obj.fileName + "</span>";
-							str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+							str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 							"<span aria-hidden='true'>&times;</span></button><br>";
-							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "<img src='/displayS3images?fileName="+obj.fileName+"&directory=images&uuid="+obj.uuid+"&path="+obj.uploadPath+"'>";
 							str += "</div>";
 							str + "</li>";
 								
@@ -401,7 +488,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 							str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
 							str += "data-type ='"+obj.image+"' ><div>";
 							str += "<span> "+ obj.fileName+"</span>";
-							str += "<button type='button' cclass='close' aria-label='Close' data-file=\'"+fileCallPath+"\' data-type='file'>"+
+							str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 							"<span aria-hidden='true'>&times;</span></button><br>";
 							str += "<img src='/resources/images/attach.png'>";
 							str += "</div>";
@@ -481,14 +568,14 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				}
 				
 				$.ajax({
-					url : '/uploadAjaxAction',
+					url : '/s3image',
 					processData : false,
 					contentType : false,
-					data : formData,
-					type : 'POST',
 					beforeSend : function(xhr){
 						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);	
 					},
+					data : formData,
+					type : 'POST',
 					dataType: 'json',
 					success : function(result) {
 						console.log(result);
@@ -521,14 +608,14 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 				//formData.append("uploadFile", {maincheck : true});
 				
 				$.ajax({
-					url : '/uploadAjaxAction',
+					url : '/s3image',
 					processData : false,
 					contentType : false,
-					data : formData,
-					type : 'POST',
 					beforeSend : function(xhr){
 						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);	
 					},
+					data : formData,
+					type : 'POST',
 					dataType: 'json',
 					success : function(result) {
 					showUploadResult(result);
@@ -556,9 +643,9 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 					str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 					str += "<div col-md-4 center-block>";
 					str += "<span> "+ obj.fileName + "</span>";
-					str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+					str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 					"<span aria-hidden='true'>&times;</span></button><br>";
-					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "<img src='/displayS3images?fileName="+obj.fileName+"&directory=images&uuid="+obj.uuid+"&path="+obj.uploadPath+"'>";
 					str += "</div>";
 					str + "</li>";
 				}
@@ -572,9 +659,9 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type ='"+obj.image+"'>"
 						str += "<div col-md-4 center-block>";
 						str += "<span> "+ obj.fileName + "</span>";
-						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='close' aria-label='Close'>"+
+						str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 						"<span aria-hidden='true'>&times;</span></button><br>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "<img src='/displayS3images?fileName="+obj.fileName+"&directory=images&uuid="+obj.uuid+"&path="+obj.uploadPath+"'>";
 						str += "</div>";
 						str + "</li>";
 							
@@ -590,7 +677,7 @@ span.k-widget.k-tooltip-validation {display;inline-block;
 						str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
 						str += "data-type ='"+obj.image+"' ><div>";
 						str += "<span> "+ obj.fileName+"</span>";
-						str += "<button type='button' cclass='close' aria-label='Close' data-file=\'"+fileCallPath+"\' data-type='file'>"+
+						str += "<button type='button' data-file=\'"+obj.uploadPath+"\' data-type='image' class='close' aria-label='Close'>"+
 						"<span aria-hidden='true'>&times;</span></button><br>";
 						str += "<img src='/resources/images/attach.png'>";
 						str += "</div>";

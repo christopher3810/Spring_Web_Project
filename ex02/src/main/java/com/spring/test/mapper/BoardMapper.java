@@ -15,7 +15,13 @@ public interface BoardMapper {
 	//	@Select("select * from board where id > 0")
 	public List<BoardVO> getList();
 	
+	public List<BoardVO> getRecentList(Criteria cri);
+	
+	public List<BoardVO> getListWithcontent(Criteria cri);
+	
 	public List<BoardVO> getListWithPaging(Criteria cri);
+	
+	public int getTotalwithcontent(Criteria cri);
 	
 	public void insert(BoardVO board,BoardAttachVO vo);
 	

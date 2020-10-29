@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -45,8 +47,11 @@ import com.spring.test.domain.BoardVO;
 import com.spring.test.domain.Criteria;
 import com.spring.test.domain.PageDTO;
 import com.spring.test.service.BoardService;
+import com.spring.test.service.EventService;
+import com.spring.test.service.S3service;
 
 import lombok.AllArgsConstructor;
+import lombok.var;
 import lombok.extern.log4j.Log4j;
 
 
@@ -59,6 +64,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private BoardService service;
+	private EventService eventservice;
+	private S3service s3service;
 
 	/*
 	 * list는 게시물 목록을 전달해야 함으로 Model을 파라미터로 지정 이를 통해 BoardServiceImpl 객체의
@@ -69,7 +76,15 @@ public class BoardController {
 	 * 
 	 * log.info("list"); model.addAttribute("list" , service.getList()); }
 	 */
-
+	
+	@GetMapping("/login")
+	public String customLogin() {
+		
+		return "redirect:/customLogin";
+	}
+	
+	
+	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		
@@ -78,7 +93,10 @@ public class BoardController {
 		
 		int total = service.getTotal(cri);
 		log.info("total: " + total );
-		 model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		
+		model.addAttribute("recentlist" , service.getRecentList(cri));
+		 
 		 
 /*		
 		ModelAndView mav = new ModelAndView("/board/list");
@@ -98,6 +116,7 @@ public class BoardController {
 	public void register() {
 
 	}
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/boardproduct")
 	public void boardproduct(@RequestParam("id") Long id, Model model) {
 
@@ -177,7 +196,18 @@ public class BoardController {
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	}
 	//BoardController는 restcontroller로 작성되지 않았기 때문에 직접 @responseBody 적용해서 json데이터 변환해야됨 
+	@PostMapping("/deleteS3File")
+	public void deleteS3File(String temppath) throws IOException {
+		log.info("boardController deleteS3File temppath check : " + temppath);
+		
+		var temp = temppath.substring(1, temppath.length() );
+		
+		log.info("temppath setting key value : " + temp);
+		
+		s3service.deleteObject(temppath);
+	}
 	
+	//key값을 넘겨주면 버킷에서 object delete
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
 		if(attachList == null || attachList.size() == 0) {
@@ -189,18 +219,10 @@ public class BoardController {
 		
 		attachList.forEach(attach ->{
 			try {
-				Path file = Paths.get("D:\\web_upload\\"+attach.
-						getUploadPath()+"\\" +attach.getUuid()+"_"+ attach.getFileName());
+				var temp = attach.getUploadPath()+"/"+attach.getUuid()+"_"+attach.getFileName();
+				var Path= temp.substring(1, temp.length() );
+				s3service.deleteObject(Path);
 				
-				Files.deleteIfExists(file);
-				
-				if(Files.probeContentType(file).startsWith("image")) {
-					
-					Path thumbNail = Paths.get("D:\\web_upload\\"+attach.
-							getUploadPath()+"\\s_" + attach.getUuid()+"_"+attach.getFileName());
-					
-					Files.delete(thumbNail);
-				}
 			}catch(Exception e){
 				
 				log.error("delete file error" + e.getMessage());
@@ -209,6 +231,34 @@ public class BoardController {
 		});
 		
 		
+	}
+	@GetMapping("/contentproduct")
+	public void contentproduct(Criteria cri, Model model) {
+		log.info("contentproduct paging cri check : " + cri); 
+		model.addAttribute("contentproductlist" , service.getListWithcontent(cri));
+		int total = service.getTotalwithcontent(cri);
+		log.info("contentproduct_total check : " + total );
+		 model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		log.info("contentproduct page access");
+	}
+	@GetMapping("/nomalproduct")
+	public void nomalproduct(Criteria cri, Model model) {
+		log.info("nomalproduct paging cri check : " + cri); 
+		model.addAttribute("nomalproductlist" , service.getListWithcontent(cri));
+		int total = service.getTotalwithcontent(cri);
+		log.info("nomalproduct_total check : " + total );
+		 model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		log.info("nomalproduct page access");
+	}
+	@GetMapping("/event")
+	public void event(Criteria cri, Model model) {
+		log.info("event paging cri check : " + cri); 
+		model.addAttribute("eventlist" , eventservice.getEvent(cri));
+		
+		int total = eventservice.getTotal(cri);
+		log.info("event_total check : " + total );
+		 model.addAttribute("pageMaker" , new PageDTO(cri, total));
+		log.info("event page access");
 	}
 	/*
 	@GetMapping("/display")
